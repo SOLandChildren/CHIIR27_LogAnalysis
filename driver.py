@@ -71,14 +71,19 @@ def get_clicked_results(log_entries):
 
     return clicked_results_df
 
-def get_final_answer(log_entries):
+def get_final_answers(log_entries):
     final_answer = []
+    topics = pd.read_csv("Data/topics.csv")
     for entry in log_entries:
         if entry["type"] == "TaskEnded":
-            final_answer.append([entry["uid"], assign_topic_number(entry["uid"], entry["actual_topic_number"]), entry["answer"]])
+            # print(entry["uid"])
+            topic_num = assign_topic_number(entry["uid"], entry["actual_topic_number"])
+            topic = topics.loc[topics["tid"]==topic_num]["question"].values[0]
+            final_answer.append([entry["uid"], topic_num, topic, entry["answer"], entry["timestamp"]])
 
-    final_answer_df = pd.DataFrame(final_answer, columns = ["uid", "topic_number", "answer"])
+    final_answer_df = pd.DataFrame(final_answer, columns = ["uid", "topic_number", "prompt", "answer", "timestamp"])
     final_answer_df["uid"] = final_answer_df["uid"].astype("Int64")
     final_answer_df["timestamp"] = pd.to_datetime(final_answer_df["timestamp"])
+    final_answer_df = final_answer_df.drop_duplicates(ignore_index=True)
     return final_answer_df
 

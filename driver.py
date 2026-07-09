@@ -17,12 +17,15 @@ def get_result_rank(page_rank, page_num):
 def get_queries(log_entries):
     query_actions = []
     for entry in log_entries:
-        if entry["type"] == "querySubmitted":
+        topic_num = assign_topic_number(entry["uid"], entry["actual_topic_number"])
+        if (entry["type"] == "querySubmitted"):
             if entry["query"] != "":
-                query_actions.append([entry["uid"], assign_topic_number(entry["uid"], entry["actual_topic_number"]), entry["rawQuery"], entry["timestamp"]])
+                query_actions.append([entry["uid"], topic_num, entry["rawQuery"], "UserFormulated", entry["timestamp"]])
+        elif (entry["type"]=="clickedDidYouMeanSuggestion"):
+            query_actions.append([entry["uid"], topic_num, entry["suggested query"], "DidYouMean", entry["timestamp"]])
 
     
-    query_df = pd.DataFrame(query_actions, columns = ["uid", "topic_number", "query", "timestamp"])
+    query_df = pd.DataFrame(query_actions, columns = ["uid", "topic_number", "query", "source", "timestamp"])
     query_df["uid"] = query_df["uid"].astype("Int64")
     query_df["timestamp"] = pd.to_datetime(query_df["timestamp"])
 

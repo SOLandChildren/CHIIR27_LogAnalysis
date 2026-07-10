@@ -19,8 +19,8 @@ def get_queries(log_entries):
     for entry in log_entries:
         topic_num = assign_topic_number(entry["uid"], entry["actual_topic_number"])
         if (entry["type"] == "querySubmitted"):
-            if entry["query"] != "":
-                query_actions.append([entry["uid"], topic_num, entry["rawQuery"], "UserFormulated", entry["timestamp"]])
+            if entry["query"].strip() != "":
+                query_actions.append([entry["uid"], topic_num, entry["query"].strip(), "UserFormulated", entry["timestamp"]])
         elif (entry["type"]=="clickedDidYouMeanSuggestion"):
             query_actions.append([entry["uid"], topic_num, entry["suggested query"], "DidYouMean", entry["timestamp"]])
 
@@ -36,7 +36,7 @@ def get_query_actions(log_entries):
     for entry in log_entries:
         topic_num = assign_topic_number(entry["uid"], entry["actual_topic_number"])
         if entry["type"] == "querySubmitted":
-            query_actions.append([entry["uid"], topic_num, entry["rawQuery"], "UserSubmittedQuery", entry["timestamp"]])
+            query_actions.append([entry["uid"], topic_num, entry["query"].strip(), "UserSubmittedQuery", entry["timestamp"]])
         elif entry["type"] == "choseAutoCompleteSuggestion":
             query_actions.append([entry["uid"], topic_num, entry["selectedSuggestion"], "AutoCompleteSuggestion", entry["timestamp"]])
         elif entry["type"] == "clickedDidYouMeanSuggestion":
@@ -55,10 +55,10 @@ def get_generated_serps(log_entries):
     for entry in log_entries:
         topic_num = assign_topic_number(entry["uid"], entry["actual_topic_number"])
         if entry["type"] == "searchResultGenerated":
-            generated_serps.append([entry["uid"], topic_num, entry["query"], entry["url"], entry["title"], entry["snippet"], get_result_rank(entry["rank"], entry["page"]), entry["timestamp"]])
+            generated_serps.append([entry["uid"], topic_num, entry["query"].strip(), entry["url"], entry["title"], entry["snippet"], get_result_rank(entry["rank"], entry["page"]), entry["timestamp"]])
         if entry["type"] == "searchNoResults":
-            # print("No results for query:", entry["query"])
-            generated_serps.append([entry["uid"], topic_num, entry["query"], None, None, None, None, entry["timestamp"]])
+            # print("No results for query:", entry["query"].strip())
+            generated_serps.append([entry["uid"], topic_num, entry["query"].strip(), None, None, None, None, entry["timestamp"]])
 
     serp_df = pd.DataFrame(generated_serps, columns = ["uid", "topic_number", "query", "url", "title", "snippet", "rank", "timestamp"])
     # serp_df["rank"] = serp_df["rank"].astype("Int64")
@@ -71,7 +71,7 @@ def get_clicked_results(log_entries):
     clicked_results = []
     for entry in log_entries:
         if entry["type"] == "clickedResult":
-            clicked_results.append([entry["uid"], assign_topic_number(entry["uid"], entry["actual_topic_number"]), entry["query"], entry["url"], get_result_rank(entry["rank"], entry["page"]), entry["timestamp"]])
+            clicked_results.append([entry["uid"], assign_topic_number(entry["uid"], entry["actual_topic_number"]), entry["query"].strip(), entry["url"], get_result_rank(entry["rank"], entry["page"]), entry["timestamp"]])
 
     clicked_results_df = pd.DataFrame(clicked_results, columns = ["uid", "topic_number", "query", "url", "rank", "timestamp"])
     clicked_results_df["uid"] = clicked_results_df["uid"].astype("Int64")
@@ -84,7 +84,7 @@ def get_viewed_results(log_entries):
     viewed_results = []
     for entry in log_entries:
         if (entry["type"] == "resultExposureEnded") or (entry["type"]=="resultExposureStarted"):
-            viewed_results.append([entry["uid"], assign_topic_number(entry["uid"], entry["actual_topic_number"]), entry["query"], entry["url"], get_result_rank(entry["rank"], entry["page"]), entry["type"], entry["timestamp"]])
+            viewed_results.append([entry["uid"], assign_topic_number(entry["uid"], entry["actual_topic_number"]), entry["query"].strip(), entry["url"], get_result_rank(entry["rank"], entry["page"]), entry["type"], entry["timestamp"]])
 
     viewed_results_df = pd.DataFrame(viewed_results, columns = ["uid", "topic_number", "query", "url", "rank", "viewType", "timestamp"])
     viewed_results_df["uid"] = viewed_results_df["uid"].astype("Int64")

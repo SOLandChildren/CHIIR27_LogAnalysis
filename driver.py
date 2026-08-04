@@ -1,8 +1,14 @@
 import pandas as pd
 import numpy as np
 import json
+from scipy.stats import zscore
+from sklearn.preprocessing import MinMaxScaler
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-# global topic number: g<grade>t<topic_num>
+# dataset creation
+
+## global topic number: g<grade>t<topic_num>
 def assign_topic_number(uid, topic_num):
     if int(uid) <=  8 or int(uid) >= 17:
         grade = "3"
@@ -109,4 +115,80 @@ def get_final_answers(log_entries):
     final_answer_df["timestamp"] = pd.to_datetime(final_answer_df["timestamp"])
     final_answer_df = final_answer_df.drop_duplicates(ignore_index=True)
     return final_answer_df
+
+
+# visualization
+
+def get_boxplots(df, categories, group, artefact, n_cols, n_rows):
+    plt.figure(figsize=(16,9))
+    # plt.subplots_adjust(hspace=0.5)
+    for i, category in enumerate(categories): 
+        ax = plt.subplot(n_rows, n_cols, i+1)
+        sns.boxplot(data=df, x=group, y=category, hue=group)
+        ax.set_title(category)
+
+        # xtick_map = {'0':'ineffective '+artefact, '1':'effective '+artefact}
+        ax.set_xticklabels("")
+        ax.set_xlabel("")
+        ax.set_ylabel("")
+        ax.legend().remove()
+
+    legend_map = {'0':'ineffective '+artefact, '1':'effective '+artefact}
+
+    handles, labels = ax.get_legend_handles_labels()
+    # print(labels)
+    plt.figlegend(handles, [legend_map[l] for l in labels], loc="upper center", ncol=2)
+
+    # plt.figlegend(handles=legend_elements, loc="upper right")
+    plt.show()
+
+
+def get_radar_plot(df, categories, artefact, group, normalized=True):
+
+    for scaling in ["zscore", "minmax"]:
+        if scaling=="zscore":
+
+            scaled_df = df[categories].apply(zscore, nan_policy='omit')
+            # print(z_standardized)
+        elif scaling == "minmax":
+
+            scaler = MinMaxScaler()
+
+            scaled_df = pd.DataFrame(
+                scaler.fit_transform(df[categories]),
+                columns=categories,
+                index=df.index
+            )
+
+        scaled_df[group] = df[group]
+        cluster_means = scaled_df.groupby(group).mean()
+        # cluster_means = cluster_means.apply(zscore)
+        # print(cluster_means)
+
+        N = len(categories)
+        angles = np.linspace(0, 2*np.pi, N, endpoint=False).tolist()
+        angles += angles[:1]  
+
+        fig, ax = plt.subplots(figsize=(7,7), subplot_kw=dict(polar=True))
+
+        for i, row in cluster_means.iterrows():
+            values = row.tolist()
+            values += values[:1]
+            ax.plot(angles, values, label=f'${i}$', linewidth=2)
+            ax.fill(angles, values, alpha=0.1)
+
+        if normalized:
+            ax.set_yticklabels([])
+        ax.set_xticks(angles[:-1])
+        ax.set_xticklabels([r for r in categories])
+
+        legend_map = {'$0$':'ineffective '+artefact, '$1$':'effective '+artefact}
+
+        handles, labels = ax.get_legend_handles_labels()
+        # print(labels)
+        ax.legend(handles, [legend_map[l] for l in labels], loc='upper right', bbox_to_anchor=(1.1, 1.1))
+        plt.title(f"Scaled using {scaling}", y=1.05, fontsize=14)
+
+        plt.show()
+
 

@@ -5,6 +5,10 @@ from scipy.stats import zscore
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 import seaborn as sns
+import re
+import textstat
+import spacy
+from tqdm.notebook import tqdm
 
 # dataset creation
 
@@ -190,5 +194,61 @@ def get_radar_plot(df, categories, artefact, group, normalized=True):
         plt.title(f"Scaled using {scaling}", y=1.05, fontsize=14)
 
         plt.show()
+
+# text processing
+def clean_text(text):
+    try:
+        if pd.isna(text):
+            return ""
+        else:
+            text = re.sub(r"\s+", " ", text)
+            text = re.sub(r"\n+", ". ", text)
+            text = re.sub(r"\\'", "'", text)
+            text = re.sub(r"\"", "", text)
+            text = re.sub(r"\\'|[’‘]", "'", text)
+            text = text.replace("\xa0", " ") # Remove accidental escape sequences
+            return text.strip()
+    except Exception as e:
+        print(f"Error cleaning text {text}: {e}")
+        return text
+
+def get_text_stats(df, text_col_name):
+    textstat.set_lang("it")
+
+    nlp = spacy.load("it_core_news_sm")
+    ITaoa = pd.read_excel("Resources/ItAoA_database.xlsx")
+    concreteness = pd.read_excel("Resources/IT_concreteness_database.xlsx")
+
+    content_len = []
+    mean_aoa = []
+    gulpease_index = []
+    fres = []
+    mean_conc = []
+
+    for _, row in tqdm(df.iterrows(), total=len(df)):
+        doc = nlp(row[text_col_name])
+        
+        # content length
+        content_len.append(sum(
+            1 for token in doc
+            if token.is_alpha or token.like_num
+        ))
+
+        # aoa and concreteness
+        aoa_vals = []
+        conc_vals = []
+        for token in doc:
+            if token.lemma_.lower() in ITaoa["Ita_Word"].tolist():
+                aoa_vals.append(ITaoa.loc[ITaoa["Ita_Word"]==token.lemma_.lower()]["M_AoA"].values[0])
+            if token.lemma_.lower() in concreteness["Ita_Word"].tolist():
+                conc_vals.append(concreteness.loc[concreteness["Ita_Word"]==token.lemma_.lower()]["M_Con"].values[0])
+        mean_aoa.append(np.mean(aoa_vals))
+        mean_conc.append(np.mean(conc_vals))
+
+        # readability
+        gulpease_index.append(textstat.gulpease_index(row[text_col_name]))
+        fres.append(textstat.flesch_reading_ease(row[text_col_name]))
+
+    return {"content_len": content_len, "mean_aoa": mean_aoa, "mean_conc": mean_conc, "gulpease_index": gulpease_index, "fres": fres}
 
 

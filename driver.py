@@ -41,6 +41,22 @@ def get_queries(log_entries):
 
     return query_df
 
+def get_query_corrections(log_entries):
+    query_corrections = []
+    for entry in log_entries:
+        topic_num = assign_topic_number(entry["uid"], entry["actual_topic_number"])
+        if (entry["type"]=="generatedDidYouMean"):
+            try:
+                query_corrections.append([entry["uid"], topic_num, entry["user query"].strip(), entry["suggested query"], entry["timestamp"]])
+            except Exception as e:
+                print(entry["uid"], entry["timestamp"])
+                query_corrections.append([entry["uid"], topic_num, entry["query"].strip(), entry["suggested query"], entry["timestamp"]])
+
+    query_corrections_df = pd.DataFrame(query_corrections, columns = ["uid", "topic_number", "original_query", "corrected_query", "timestamp"])
+    query_corrections_df["uid"] = query_corrections_df["uid"].astype("Int64")
+    query_corrections_df["timestamp"] = pd.to_datetime(query_corrections_df["timestamp"])
+    return query_corrections_df
+
 def get_query_actions(log_entries):
     query_actions = []
     for entry in log_entries:
@@ -154,15 +170,15 @@ def get_radar_plot(df, categories, artefact, group, normalized=True):
 
             scaled_df = df[categories].apply(zscore, nan_policy='omit')
             # print(z_standardized)
-        elif scaling == "minmax":
+        # elif scaling == "minmax":
 
-            scaler = MinMaxScaler()
+        #     scaler = MinMaxScaler()
 
-            scaled_df = pd.DataFrame(
-                scaler.fit_transform(df[categories]),
-                columns=categories,
-                index=df.index
-            )
+        #     scaled_df = pd.DataFrame(
+        #         scaler.fit_transform(df[categories]),
+        #         columns=categories,
+        #         index=df.index
+        #     )
 
         scaled_df[group] = df[group]
         cluster_means = scaled_df.groupby(group).mean()
@@ -191,7 +207,7 @@ def get_radar_plot(df, categories, artefact, group, normalized=True):
         handles, labels = ax.get_legend_handles_labels()
         # print(labels)
         ax.legend(handles, [legend_map[l] for l in labels], loc='upper right', bbox_to_anchor=(1.1, 1.1))
-        plt.title(f"Scaled using {scaling}", y=1.05, fontsize=14)
+        # plt.title(f"Scaled using {scaling}", y=1.05, fontsize=14)
 
         plt.show()
 

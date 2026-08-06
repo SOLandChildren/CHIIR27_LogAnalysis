@@ -1,0 +1,9 @@
+search_stage,feature,feature_mean_val_diff,pval,significant
+query_formulation,query_len,4.121749408983451,0.0002,True
+query_formulation,mean_aoa,-0.8395663956639563,0.0584,False
+query_formulation,mean_conc,-1.1507142857142867,0.1268,False
+query_formulation,gulpease_index,-23.42619319215062,0.0998,False
+query_formulation,lex_density,-0.35625169747510166,0.0002,True
+query_formulation,stop_word_ratio,0.31375875897152494,0.0002,True
+query_formulation,num_typos,-0.4893617021276596,0.1244,False
+query_formulation,levenshtein_dist,-1.4940898345153664,0.0162,True

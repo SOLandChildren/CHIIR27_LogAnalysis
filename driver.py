@@ -9,6 +9,7 @@ import re
 import textstat
 import spacy
 from tqdm.notebook import tqdm
+from scipy.stats import permutation_test
 
 # dataset creation
 
@@ -165,51 +166,51 @@ def get_boxplots(df, categories, group, artefact, n_cols, n_rows):
 
 def get_radar_plot(df, categories, artefact, group, normalized=True):
 
-    for scaling in ["zscore", "minmax"]:
-        if scaling=="zscore":
+    # for scaling in ["zscore", "minmax"]:
+    #     if scaling=="zscore":
 
-            scaled_df = df[categories].apply(zscore, nan_policy='omit')
-            # print(z_standardized)
-        # elif scaling == "minmax":
+    scaled_df = df[categories].apply(zscore, nan_policy='omit')
+        # print(z_standardized)
+    # elif scaling == "minmax":
 
-        #     scaler = MinMaxScaler()
+    #     scaler = MinMaxScaler()
 
-        #     scaled_df = pd.DataFrame(
-        #         scaler.fit_transform(df[categories]),
-        #         columns=categories,
-        #         index=df.index
-        #     )
+    #     scaled_df = pd.DataFrame(
+    #         scaler.fit_transform(df[categories]),
+    #         columns=categories,
+    #         index=df.index
+    #     )
 
-        scaled_df[group] = df[group]
-        cluster_means = scaled_df.groupby(group).mean()
-        # cluster_means = cluster_means.apply(zscore)
-        # print(cluster_means)
+    scaled_df[group] = df[group]
+    cluster_means = scaled_df.groupby(group).mean()
+    # cluster_means = cluster_means.apply(zscore)
+    # print(cluster_means)
 
-        N = len(categories)
-        angles = np.linspace(0, 2*np.pi, N, endpoint=False).tolist()
-        angles += angles[:1]  
+    N = len(categories)
+    angles = np.linspace(0, 2*np.pi, N, endpoint=False).tolist()
+    angles += angles[:1]  
 
-        fig, ax = plt.subplots(figsize=(7,7), subplot_kw=dict(polar=True))
+    fig, ax = plt.subplots(figsize=(7,7), subplot_kw=dict(polar=True))
 
-        for i, row in cluster_means.iterrows():
-            values = row.tolist()
-            values += values[:1]
-            ax.plot(angles, values, label=f'${i}$', linewidth=2)
-            ax.fill(angles, values, alpha=0.1)
+    for i, row in cluster_means.iterrows():
+        values = row.tolist()
+        values += values[:1]
+        ax.plot(angles, values, label=f'${i}$', linewidth=2)
+        ax.fill(angles, values, alpha=0.1)
 
-        if normalized:
-            ax.set_yticklabels([])
-        ax.set_xticks(angles[:-1])
-        ax.set_xticklabels([r for r in categories])
+    if normalized:
+        ax.set_yticklabels([])
+    ax.set_xticks(angles[:-1])
+    ax.set_xticklabels([r for r in categories])
 
-        legend_map = {'$0$':'ineffective '+artefact, '$1$':'effective '+artefact}
+    legend_map = {'$0$':'ineffective '+artefact, '$1$':'effective '+artefact}
 
-        handles, labels = ax.get_legend_handles_labels()
-        # print(labels)
-        ax.legend(handles, [legend_map[l] for l in labels], loc='upper right', bbox_to_anchor=(1.1, 1.1))
-        # plt.title(f"Scaled using {scaling}", y=1.05, fontsize=14)
+    handles, labels = ax.get_legend_handles_labels()
+    # print(labels)
+    ax.legend(handles, [legend_map[l] for l in labels], loc='upper right', bbox_to_anchor=(1.1, 1.1))
+    # plt.title(f"Scaled using {scaling}", y=1.05, fontsize=14)
 
-        plt.show()
+    plt.show()
 
 # text processing
 def clean_text(text):
@@ -238,13 +239,13 @@ def get_text_stats(df, text_col_name):
     content_len = []
     mean_aoa = []
     gulpease_index = []
-    fres = []
+    # fres = []
     mean_conc = []
 
     for _, row in tqdm(df.iterrows(), total=len(df)):
         doc = nlp(row[text_col_name])
         
-        # content length
+        # content length: number of words
         content_len.append(sum(
             1 for token in doc
             if token.is_alpha or token.like_num
@@ -254,17 +255,37 @@ def get_text_stats(df, text_col_name):
         aoa_vals = []
         conc_vals = []
         for token in doc:
-            if token.lemma_.lower() in ITaoa["Ita_Word"].tolist():
-                aoa_vals.append(ITaoa.loc[ITaoa["Ita_Word"]==token.lemma_.lower()]["M_AoA"].values[0])
-            if token.lemma_.lower() in concreteness["Ita_Word"].tolist():
-                conc_vals.append(concreteness.loc[concreteness["Ita_Word"]==token.lemma_.lower()]["M_Con"].values[0])
+            if token.text.lower() in ITaoa["Ita_Word"].tolist():
+                aoa_vals.append(ITaoa.loc[ITaoa["Ita_Word"]==token.text.lower()]["M_AoA"].values[0])
+            if token.text.lower() in concreteness["Ita_Word"].tolist():
+                conc_vals.append(concreteness.loc[concreteness["Ita_Word"]==token.text.lower()]["M_Con"].values[0])
         mean_aoa.append(np.mean(aoa_vals))
         mean_conc.append(np.mean(conc_vals))
 
         # readability
         gulpease_index.append(textstat.gulpease_index(row[text_col_name]))
-        fres.append(textstat.flesch_reading_ease(row[text_col_name]))
+        # fres.append(textstat.flesch_reading_ease(row[text_col_name]))
 
-    return {"content_len": content_len, "mean_aoa": mean_aoa, "mean_conc": mean_conc, "gulpease_index": gulpease_index, "fres": fres}
+    return {"content_len": content_len, "mean_aoa": mean_aoa, "mean_conc": mean_conc, "gulpease_index": gulpease_index}
 
+def get_significance(df, performance_metric, threshold, stage, categories):
+    sig_test_results = []
 
+    effective = df.loc[df[performance_metric]>=threshold]
+    ineffective = df.loc[df[performance_metric]<threshold]
+
+    def statistic(x, y):
+        x = pd.Series(x, copy=False)
+        y = pd.Series(y, copy=False)
+        return x.mean() - y.mean()
+
+    for category in categories:
+        ineffective_category = ineffective[category]
+        effective_category = effective[category]
+        pval = permutation_test(data=(ineffective_category, effective_category), statistic=statistic).pvalue
+        sig_test_results.append([stage, category, statistic(ineffective_category, effective_category), pval, pval<0.05])
+
+    sig_test_df = pd.DataFrame(sig_test_results, columns=["search_stage", "feature", "feature_mean_val_diff", "pval", "significant"])
+    # sig_test_df.to_csv("sig_test_"+stage+".csv", index=False, encoding="utf8")
+
+    return sig_test_df

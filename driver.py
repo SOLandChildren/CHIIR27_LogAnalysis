@@ -110,16 +110,33 @@ def get_clicked_results(log_entries):
 def get_viewed_results(log_entries):
     viewed_results = []
     for entry in log_entries:
-        if (entry["type"] == "resultExposureEnded") or (entry["type"]=="resultExposureStarted"):
-            viewed_results.append([entry["uid"], assign_topic_number(entry["uid"], entry["actual_topic_number"]), entry["query"].strip(), entry["url"], get_result_rank(entry["rank"], entry["page"]), entry["type"], entry["timestamp"]])
-
-    viewed_results_df = pd.DataFrame(viewed_results, columns = ["uid", "topic_number", "query", "url", "rank", "viewType", "timestamp"])
+        if entry["type"] == "resultExposureEnded":
+            viewed_results.append([entry["uid"], assign_topic_number(entry["uid"], entry["actual_topic_number"]), entry["query"].strip(), entry["url"], get_result_rank(entry["rank"], entry["page"]), entry["type"], entry["durationMs"]/1000, entry["timestamp"]])
+        elif entry["type"]=="resultExposureStarted":
+            viewed_results.append([entry["uid"], assign_topic_number(entry["uid"], entry["actual_topic_number"]), entry["query"].strip(), entry["url"], get_result_rank(entry["rank"], entry["page"]), entry["type"], None, entry["timestamp"]])
+    viewed_results_df = pd.DataFrame(viewed_results, columns = ["uid", "topic_number", "query", "url", "rank", "viewType", "viewDurationInSeconds", "timestamp"])
     viewed_results_df["uid"] = viewed_results_df["uid"].astype("Int64")
     viewed_results_df["rank"] = viewed_results_df["rank"].astype("Int64")
     viewed_results_df["timestamp"] = pd.to_datetime(viewed_results_df["timestamp"])
 
     return viewed_results_df
 
+def get_explored_web_pages(log_entries):
+    web_pages = []
+    for entry in log_entries:
+        if entry["type"] == "webpageClosed":
+            web_pages.append(entry["uid"], assign_topic_number(entry["uid"], entry["actual_topic_number"]), entry["query"].strip(), entry["url"], entry["type"], entry["durationMs"]/1000, entry["timestamp"])
+            close_i += 1
+        elif entry["type"] == "webpageOpened":
+            web_pages.append(entry["uid"], assign_topic_number(entry["uid"], entry["actual_topic_number"]), entry["query"].strip(), entry["url"], entry["type"], None, entry["timestamp"])
+            open_i += 1
+
+    web_pages_df = pd.DataFrame(web_pages, columns = ["uid", "topic_number", "query", "url", "viewType", "viewDurationInSeconds", "timestamp"])
+    web_pages_df["uid"] = web_pages_df["uid"].astype("Int64")
+    web_pages_df["rank"] = web_pages_df["rank"].astype("Int64")
+    web_pages_df["timestamp"] = pd.to_datetime(web_pages_df["timestamp"])
+
+    return web_pages_df
 
 def get_final_answers(log_entries):
     final_answer = []
@@ -137,7 +154,6 @@ def get_final_answers(log_entries):
     final_answer_df = final_answer_df.drop_duplicates(ignore_index=True)
     return final_answer_df
 
-
 # visualization
 
 def get_boxplots(df, categories, group, artefact, n_cols, n_rows):
@@ -145,7 +161,14 @@ def get_boxplots(df, categories, group, artefact, n_cols, n_rows):
     # plt.subplots_adjust(hspace=0.5)
     for i, category in enumerate(categories): 
         ax = plt.subplot(n_rows, n_cols, i+1)
-        sns.boxplot(data=df, x=group, y=category, hue=group)
+        sns.boxplot(data=df, x=group, y=category, hue=group, showmeans=True,     
+                        meanprops={
+                            "marker": "D",                    # Circle marker
+                            "markerfacecolor": "white",       # White inside
+                            "markeredgecolor": "black",       # Black border
+                            "markersize": "7"                 # Size of marker
+                        }
+                    )
         ax.set_title(category)
 
         # xtick_map = {'0':'ineffective '+artefact, '1':'effective '+artefact}

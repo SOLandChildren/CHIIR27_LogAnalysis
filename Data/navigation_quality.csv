@@ -1,60 +1,60 @@
-uid,topic_number,qid,query,serp_id,total_clicks,repetitions,tail,last_relevant_timestamp,nav_eff
-1,g3t3,q1,Quali sono i cinque animali tipici dell india,serp1,2,1,0,2026-05-19 14:53:19.408,0.5
-1,g3t2,q2,Quale è il nome del simbolo al centro della bandieradel india,serp2,1,0,0,2026-05-19 15:02:48.776,1.0
-1,g3t1,q3,Fiume sacro degli indiani,serp3,1,0,0,2026-05-19 15:08:58.405,1.0
-2,g3t3,q5,Quali sono i 5 animali tipici dall'India,serp5,1,0,0,2026-05-19 14:52:53.759,1.0
-2,g3t2,q7,"Qual è il nome del simbolo al  centro della  bandiera dell'india,e che cosa rappresenta",serp7,1,0,0,2026-05-19 15:09:25.575,1.0
-2,g3t1,q8,Come si chiama il fiume sacro agli indiani,serp8,1,0,0,2026-05-19 15:14:18.095,1.0
-3,g3t3,q10,Quali sono 5 animali tipici dell'india,serp10,1,0,0,2026-05-19 14:56:28.100,1.0
-3,g3t2,q11,"Quale il nome del simbolo al centro della bandiera dell'india ,che cosa rapresenta",serp11,2,0,0,2026-05-19 15:06:00.133,1.0
-4,g3t2,q13,Che cosa rappresenta l'imagine del simbolo banderia dell'India,serp13,1,0,0,2026-05-19 14:55:47.060,1.0
-4,g3t2,q16,Quale il simbolo dell'India,serp16,4,1,3,2026-05-19 15:06:06.889,0.0
-4,g3t2,q14,Che cosa rappresenta l'imagine del simbolo banderia dell'India,serp14,2,1,0,2026-05-19 15:12:03.487,0.5
-4,g3t3,q17,5 animali tipici dell'India,serp17,2,1,0,2026-05-19 15:17:21.809,0.5
-4,g3t1,q18,Fiume sacro indiano,serp18,1,0,0,2026-05-19 15:20:26.846,1.0
-5,g3t3,q28,Quali sono 5 animali tipici dell india,serp28,1,0,0,2026-05-19 15:08:18.588,1.0
-5,g3t2,q30,Qual eil simbolo della bandiera india,serp30,1,0,0,2026-05-19 15:19:29.861,1.0
-6,g3t3,q35,Quali sono 5 animali tipici dell'india,serp35,1,0,0,2026-05-19 14:56:05.417,1.0
-6,g3t2,q37,"Quale il simbolo al centro della bandiera dell'india, e che cosa rappresenta?",serp37,1,0,1,,0.0
-6,g3t2,q38,Simbolo andiera India,serp38,2,0,0,2026-05-19 15:13:24.460,1.0
-8,g3t3,q44,Quali sono 5 animali dell India,serp44,3,1,0,2026-05-19 14:52:02.269,0.6666666666666666
-8,g3t3,q45,Quali sono 5 animali dell India,serp45,2,1,0,2026-05-19 14:55:56.413,0.5
-8,g3t2,q50,centro bandiera india simbolo,serp50,1,0,0,2026-05-19 15:11:51.878,1.0
-9,g4t2,q54,Quale è il primo animale nello spazio e come si chiamava,serp54,5,1,0,2026-05-19 10:46:57.627,0.8
-9,g4t1,q55,Come si chiamano i satteliti maggiori di Giove,serp55,4,0,1,2026-05-19 10:53:42.819,0.75
-9,g4t1,q56,Come si chiamano i satelliti maggiori di Giove,serp56,5,2,0,2026-05-19 10:58:48.575,0.6
-9,g4t3,q57,Quali sono i nomi di altre 3 galassie oltre la nostra ?,serp57,9,5,4,2026-05-19 11:05:36.905,0.0
-9,g4t3,q59,3 galassie oltre la nostra,serp59,9,2,2,2026-05-19 11:15:39.675,0.5555555555555556
-10,g4t3,q60,Quali sono i nomi di altre 3 galassie oltre la nostra,serp60,4,0,0,2026-05-19 10:48:27.880,1.0
-10,g4t2,q61,qual'è stato il primo animale nello spazio e come si chiamava,serp61,2,1,0,2026-05-19 10:57:54.624,0.5
-11,g4t3,q64,Quali sono i nomi di altre 3 galassie oltre la nostra?,serp64,4,2,3,2026-05-19 10:42:48.471,-0.25
-11,g4t3,q65,nomi delle galassie,serp65,1,0,0,2026-05-19 10:49:16.042,1.0
-11,g4t3,q66,Nomi delle 3 galassia,serp66,4,2,0,2026-05-19 10:53:18.818,0.5
-11,g4t3,q67,Nomi di  3 galassie,serp67,2,0,0,2026-05-19 10:55:56.034,1.0
-11,g4t1,q68,Come si chiamano i satelliti maggiori di Giove?,serp68,1,0,0,2026-05-19 11:02:30.448,1.0
-11,g4t2,q71,Qual è stato il primo animale nello spazio e come si chiamava?,serp71,2,1,0,2026-05-19 11:11:00.507,0.5
-12,g4t1,q72,come si chiamano i satelliti di giove,serp72,2,0,0,2026-05-19 10:45:13.343,1.0
-12,g4t2,q73,Qual è stato il primo animale nello spazio e come si chiamava,serp73,5,3,0,2026-05-19 10:56:00.336,0.4
-12,g4t3,q74,Quali sono i nomi di altre 3 galassie oltre la nostra?,serp74,11,5,1,2026-05-19 11:07:21.821,0.45454545454545453
-12,g4t3,q75,3 Galassie oltre la nostra,serp75,4,1,0,2026-05-19 11:14:59.294,0.75
-12,g4t3,q78,3 galassie oltre alla nostra,serp78,1,0,0,2026-05-19 11:17:51.797,1.0
-13,g4t1,q79,come si chiamano i satelliti di giove,serp79,6,4,0,2026-05-19 10:55:20.453,0.3333333333333333
-13,g4t3,q81,altre galassie vicine,serp81,2,0,0,2026-05-19 11:00:26.777,1.0
-13,g4t2,q82,Qual è stato il primo animale nello spazio e come si chiamava?,serp82,3,1,0,2026-05-19 11:09:50.993,0.6666666666666666
-14,g4t3,q87,Galassie oltre la nostra,serp87,5,0,0,2026-05-19 11:05:12.287,1.0
-15,g4t2,q92,Qual è stato il primo animale nello spazio e come si chiamava,serp92,1,0,0,2026-05-19 10:46:51.654,1.0
-15,g4t2,q93,Qual è stato il primo animale nello spazio e come si chiamava,serp93,4,3,0,2026-05-19 10:53:02.489,0.25
-15,g4t3,q95,Quali sono i nomi di altre 3 galassie oltre la nostra,serp95,10,2,3,2026-05-19 11:01:43.835,0.5
-15,g4t3,q97,Quali sono i nomi di altre 3 galassie oltre la nostra?,serp97,3,1,1,2026-05-19 11:04:36.552,0.3333333333333333
-15,g4t3,q99,Nomi di altre galassie,serp99,5,2,0,2026-05-19 11:12:56.810,0.6
-15,g4t1,q100,Come si chiamano i satelliti maggiori di Giove,serp100,1,0,0,2026-05-19 11:15:58.205,1.0
-16,g4t3,q107,Quali sono i nomi di 3 galassie  oltre la nostra,serp107,5,1,0,2026-05-19 10:53:47.261,0.8
-16,g4t2,q108,quale è il primo animale a essere stato nello spazio,serp108,2,0,0,2026-05-19 10:59:49.967,1.0
-17,g3t3,q109,Quali sono i 5 animali tipici del india,serp109,3,0,2,2026-05-19 14:51:29.948,0.3333333333333333
-17,g3t2,q110,Quale il simbolo del la bandiera del india,serp110,3,0,2,2026-05-19 15:00:39.029,0.3333333333333333
-17,g3t2,q112,Quale ilsimbolo al centro della bandiera dell 'india,serp112,1,0,0,2026-05-19 15:17:12.494,1.0
-17,g3t1,q113,Il nome del fiume sacro,serp113,1,0,0,2026-05-19 15:26:27.708,1.0
-18,g3t3,q114,Quali sono i cinque tipici animali dell l india,serp114,1,0,0,2026-05-19 14:53:05.881,1.0
-18,g3t3,q115,Quali sono i  5 cinque tipici animali dell l india,serp115,1,0,0,2026-05-19 14:55:22.455,1.0
-18,g3t2,q117,Simbolo della bandiera dell'india,serp117,1,0,0,2026-05-19 15:14:24.499,1.0
-18,g3t1,q118,Come si chiama il fiume sacro degli indiani,serp118,1,0,0,2026-05-19 15:16:17.329,1.0
+uid,topic_number,qid,query,serp_id,total_clicks,repetitions,tail,last_relevant_timestamp,nav_eff,effective_nav,first_click_time,avg_time_between_clicks,rank_lowest_click
+1,g3t3,q1,Quali sono i cinque animali tipici dell india,serp1,2,1,0,2026-05-19 14:53:19.408,0.5,0,16.861,95.964,1
+1,g3t2,q2,Quale è il nome del simbolo al centro della bandieradel india,serp2,1,0,0,2026-05-19 15:02:48.776,1.0,1,7.656,0.0,1
+1,g3t1,q3,Fiume sacro degli indiani,serp3,1,0,0,2026-05-19 15:08:58.405,1.0,1,18.88,0.0,2
+2,g3t3,q5,Quali sono i 5 animali tipici dall'India,serp5,1,0,0,2026-05-19 14:52:53.759,1.0,1,93.57,0.0,1
+2,g3t2,q7,"Qual è il nome del simbolo al  centro della  bandiera dell'india,e che cosa rappresenta",serp7,1,0,0,2026-05-19 15:09:25.575,1.0,1,19.258,0.0,3
+2,g3t1,q8,Come si chiama il fiume sacro agli indiani,serp8,1,0,0,2026-05-19 15:14:18.095,1.0,1,7.894,0.0,1
+3,g3t3,q10,Quali sono 5 animali tipici dell'india,serp10,1,0,0,2026-05-19 14:56:28.100,1.0,1,166.242,0.0,1
+3,g3t2,q11,"Quale il nome del simbolo al centro della bandiera dell'india ,che cosa rapresenta",serp11,2,0,0,2026-05-19 15:06:00.133,1.0,1,9.927,95.964,3
+4,g3t2,q13,Che cosa rappresenta l'imagine del simbolo banderia dell'India,serp13,1,0,0,2026-05-19 14:55:47.060,1.0,1,49.079,0.0,7
+4,g3t2,q16,Quale il simbolo dell'India,serp16,4,1,3,2026-05-19 15:06:06.889,0.0,0,9.742,95.964,3
+4,g3t2,q14,Che cosa rappresenta l'imagine del simbolo banderia dell'India,serp14,2,1,0,2026-05-19 15:12:03.487,0.5,0,688.605,95.964,2
+4,g3t3,q17,5 animali tipici dell'India,serp17,2,1,0,2026-05-19 15:17:21.809,0.5,0,5.424,95.964,1
+4,g3t1,q18,Fiume sacro indiano,serp18,1,0,0,2026-05-19 15:20:26.846,1.0,1,5.974,0.0,1
+5,g3t3,q28,Quali sono 5 animali tipici dell india,serp28,1,0,0,2026-05-19 15:08:18.588,1.0,1,3.3689999999999998,0.0,2
+5,g3t2,q30,Qual eil simbolo della bandiera india,serp30,1,0,0,2026-05-19 15:19:29.861,1.0,1,17.836,0.0,1
+6,g3t3,q35,Quali sono 5 animali tipici dell'india,serp35,1,0,0,2026-05-19 14:56:05.417,1.0,1,1.442,0.0,1
+6,g3t2,q37,"Quale il simbolo al centro della bandiera dell'india, e che cosa rappresenta?",serp37,1,0,1,,0.0,0,0.752,0.0,1
+6,g3t2,q38,Simbolo andiera India,serp38,2,0,0,2026-05-19 15:13:24.460,1.0,1,98.999,95.964,4
+8,g3t3,q44,Quali sono 5 animali dell India,serp44,3,1,0,2026-05-19 14:52:02.269,0.6666666666666666,0,9.987,95.964,5
+8,g3t3,q45,Quali sono 5 animali dell India,serp45,2,1,0,2026-05-19 14:55:56.413,0.5,0,19.697,95.964,4
+8,g3t2,q50,centro bandiera india simbolo,serp50,1,0,0,2026-05-19 15:11:51.878,1.0,1,11.907,0.0,2
+9,g4t2,q54,Quale è il primo animale nello spazio e come si chiamava,serp54,5,1,0,2026-05-19 10:46:57.627,0.8,0,20.399,95.964,6
+9,g4t1,q55,Come si chiamano i satteliti maggiori di Giove,serp55,4,0,1,2026-05-19 10:53:42.819,0.75,0,5.732,95.964,4
+9,g4t1,q56,Come si chiamano i satelliti maggiori di Giove,serp56,5,2,0,2026-05-19 10:58:48.575,0.6,0,7.329,95.964,5
+9,g4t3,q57,Quali sono i nomi di altre 3 galassie oltre la nostra ?,serp57,9,5,4,2026-05-19 11:05:36.905,0.0,0,34.156,95.964,4
+9,g4t3,q59,3 galassie oltre la nostra,serp59,9,2,2,2026-05-19 11:15:39.675,0.5555555555555556,0,23.684,95.964,9
+10,g4t3,q60,Quali sono i nomi di altre 3 galassie oltre la nostra,serp60,4,0,0,2026-05-19 10:48:27.880,1.0,1,32.191,95.964,10
+10,g4t2,q61,qual'è stato il primo animale nello spazio e come si chiamava,serp61,2,1,0,2026-05-19 10:57:54.624,0.5,0,21.246,95.964,1
+11,g4t3,q64,Quali sono i nomi di altre 3 galassie oltre la nostra?,serp64,4,2,3,2026-05-19 10:42:48.471,-0.25,0,18.368,95.964,3
+11,g4t3,q65,nomi delle galassie,serp65,1,0,0,2026-05-19 10:49:16.042,1.0,1,8.839,0.0,1
+11,g4t3,q66,Nomi delle 3 galassia,serp66,4,2,0,2026-05-19 10:53:18.818,0.5,0,28.22,95.964,6
+11,g4t3,q67,Nomi di  3 galassie,serp67,2,0,0,2026-05-19 10:55:56.034,1.0,1,20.184,95.964,6
+11,g4t1,q68,Come si chiamano i satelliti maggiori di Giove?,serp68,1,0,0,2026-05-19 11:02:30.448,1.0,1,4.61,0.0,1
+11,g4t2,q71,Qual è stato il primo animale nello spazio e come si chiamava?,serp71,2,1,0,2026-05-19 11:11:00.507,0.5,0,8.387,95.964,1
+12,g4t1,q72,come si chiamano i satelliti di giove,serp72,2,0,0,2026-05-19 10:45:13.343,1.0,1,60.854,95.964,2
+12,g4t2,q73,Qual è stato il primo animale nello spazio e come si chiamava,serp73,5,3,0,2026-05-19 10:56:00.336,0.4,0,28.201,95.964,2
+12,g4t3,q74,Quali sono i nomi di altre 3 galassie oltre la nostra?,serp74,11,5,1,2026-05-19 11:07:21.821,0.4545454545454545,0,76.229,95.964,7
+12,g4t3,q75,3 Galassie oltre la nostra,serp75,4,1,0,2026-05-19 11:14:59.294,0.75,0,9.634,95.964,14
+12,g4t3,q78,3 galassie oltre alla nostra,serp78,1,0,0,2026-05-19 11:17:51.797,1.0,1,19.429,0.0,12
+13,g4t1,q79,come si chiamano i satelliti di giove,serp79,6,4,0,2026-05-19 10:55:20.453,0.3333333333333333,0,28.946,95.964,7
+13,g4t3,q81,altre galassie vicine,serp81,2,0,0,2026-05-19 11:00:26.777,1.0,1,19.469,95.964,7
+13,g4t2,q82,Qual è stato il primo animale nello spazio e come si chiamava?,serp82,3,1,0,2026-05-19 11:09:50.993,0.6666666666666666,0,8.465,95.964,2
+14,g4t3,q87,Galassie oltre la nostra,serp87,5,0,0,2026-05-19 11:05:12.287,1.0,1,189.202,95.964,10
+15,g4t2,q92,Qual è stato il primo animale nello spazio e come si chiamava,serp92,1,0,0,2026-05-19 10:46:51.654,1.0,1,8.48,0.0,1
+15,g4t2,q93,Qual è stato il primo animale nello spazio e come si chiamava,serp93,4,3,0,2026-05-19 10:53:02.489,0.25,0,3.171,95.964,1
+15,g4t3,q95,Quali sono i nomi di altre 3 galassie oltre la nostra,serp95,10,2,3,2026-05-19 11:01:43.835,0.5,0,35.614,95.964,11
+15,g4t3,q97,Quali sono i nomi di altre 3 galassie oltre la nostra?,serp97,3,1,1,2026-05-19 11:04:36.552,0.3333333333333333,0,9.319,95.964,3
+15,g4t3,q99,Nomi di altre galassie,serp99,5,2,0,2026-05-19 11:12:56.810,0.6,0,8.555,95.964,5
+15,g4t1,q100,Come si chiamano i satelliti maggiori di Giove,serp100,1,0,0,2026-05-19 11:15:58.205,1.0,1,12.443,0.0,1
+16,g4t3,q107,Quali sono i nomi di 3 galassie  oltre la nostra,serp107,5,1,0,2026-05-19 10:53:47.261,0.8,0,41.725,95.964,19
+16,g4t2,q108,quale è il primo animale a essere stato nello spazio,serp108,2,0,0,2026-05-19 10:59:49.967,1.0,1,7.118,95.964,2
+17,g3t3,q109,Quali sono i 5 animali tipici del india,serp109,3,0,2,2026-05-19 14:51:29.948,0.3333333333333333,0,36.505,95.964,8
+17,g3t2,q110,Quale il simbolo del la bandiera del india,serp110,3,0,2,2026-05-19 15:00:39.029,0.3333333333333333,0,29.97,95.964,5
+17,g3t2,q112,Quale ilsimbolo al centro della bandiera dell 'india,serp112,1,0,0,2026-05-19 15:17:12.494,1.0,1,288.23,0.0,1
+17,g3t1,q113,Il nome del fiume sacro,serp113,1,0,0,2026-05-19 15:26:27.708,1.0,1,6.658,0.0,1
+18,g3t3,q114,Quali sono i cinque tipici animali dell l india,serp114,1,0,0,2026-05-19 14:53:05.881,1.0,1,31.099,0.0,2
+18,g3t3,q115,Quali sono i  5 cinque tipici animali dell l india,serp115,1,0,0,2026-05-19 14:55:22.455,1.0,1,23.576999999999998,0.0,1
+18,g3t2,q117,Simbolo della bandiera dell'india,serp117,1,0,0,2026-05-19 15:14:24.499,1.0,1,42.207,0.0,6
+18,g3t1,q118,Come si chiama il fiume sacro degli indiani,serp118,1,0,0,2026-05-19 15:16:17.329,1.0,1,13.13,0.0,1

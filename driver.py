@@ -125,15 +125,12 @@ def get_explored_web_pages(log_entries):
     web_pages = []
     for entry in log_entries:
         if entry["type"] == "webpageClosed":
-            web_pages.append(entry["uid"], assign_topic_number(entry["uid"], entry["actual_topic_number"]), entry["query"].strip(), entry["url"], entry["type"], entry["durationMs"]/1000, entry["timestamp"])
-            close_i += 1
+            web_pages.append([entry["uid"], assign_topic_number(entry["uid"], entry["actual_topic_number"]), entry["url"], entry["type"], entry["durationMs"]/1000, entry["timestamp"]])
         elif entry["type"] == "webpageOpened":
-            web_pages.append(entry["uid"], assign_topic_number(entry["uid"], entry["actual_topic_number"]), entry["query"].strip(), entry["url"], entry["type"], None, entry["timestamp"])
-            open_i += 1
+            web_pages.append([entry["uid"], assign_topic_number(entry["uid"], entry["actual_topic_number"]), entry["url"], entry["type"], None, entry["timestamp"]])
 
-    web_pages_df = pd.DataFrame(web_pages, columns = ["uid", "topic_number", "query", "url", "viewType", "viewDurationInSeconds", "timestamp"])
+    web_pages_df = pd.DataFrame(web_pages, columns = ["uid", "topic_number", "url", "exploreType", "viewDurationInSeconds", "timestamp"])
     web_pages_df["uid"] = web_pages_df["uid"].astype("Int64")
-    web_pages_df["rank"] = web_pages_df["rank"].astype("Int64")
     web_pages_df["timestamp"] = pd.to_datetime(web_pages_df["timestamp"])
 
     return web_pages_df

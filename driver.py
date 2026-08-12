@@ -153,7 +153,7 @@ def get_final_answers(log_entries):
 
 # visualization
 
-def get_boxplots(df, categories, group, artefact, n_cols, n_rows):
+def get_boxplots(df, categories, group, artefact, n_cols, n_rows, stats_df=None):
     plt.figure(figsize=(16,9))
     # plt.subplots_adjust(hspace=0.5)
     for i, category in enumerate(categories): 
@@ -172,6 +172,8 @@ def get_boxplots(df, categories, group, artefact, n_cols, n_rows):
         ax.set_xticklabels("")
         ax.set_xlabel("")
         ax.set_ylabel("")
+        if (stats_df is not None) and (stats_df.loc[stats_df["feature"]==category]["significant"].values[0]==True):
+            ax.set_title(category+" *")
         ax.legend().remove()
 
     legend_map = {'0':'ineffective '+artefact, '1':'effective '+artefact}
@@ -184,7 +186,7 @@ def get_boxplots(df, categories, group, artefact, n_cols, n_rows):
     plt.show()
 
 
-def get_radar_plot(df, categories, artefact, group, normalized=True):
+def get_radar_plot(df, categories, artefact, group, normalized=True, stats_df=None):
 
     # for scaling in ["zscore", "minmax"]:
     #     if scaling=="zscore":
@@ -221,7 +223,14 @@ def get_radar_plot(df, categories, artefact, group, normalized=True):
     if normalized:
         ax.set_yticklabels([])
     ax.set_xticks(angles[:-1])
-    ax.set_xticklabels([r for r in categories])
+
+    category_names = []
+    for category in categories:
+        if (stats_df is not None) and (stats_df.loc[stats_df["feature"]==category]["significant"].values[0]==True):
+            category_names.append(category+" *")
+        else:
+            category_names.append(category)
+    ax.set_xticklabels(category_names)
 
     legend_map = {'$0$':'ineffective '+artefact, '$1$':'effective '+artefact}
 

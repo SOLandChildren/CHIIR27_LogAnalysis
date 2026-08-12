@@ -1,0 +1,11 @@
+search_stage,feature,feature_mean_val_diff,pval,significant
+information_distillation,mean_rel_time,-53.83613622782447,0.0584,False
+information_distillation,mean_irrel_time,-32.65701335016835,0.0676,False
+information_distillation,num_clicks,-0.11111111111111116,1.0,False
+information_distillation,num_unique_pages,-0.027777777777778123,1.0,False
+information_distillation,click_accuracy,0.134926854754441,0.1978,False
+information_distillation,avg_content_length,-85.64311167227834,0.653,False
+information_distillation,avg_gulpease_index,-2.756143625975369,0.5572,False
+information_distillation,avg_aoa,-0.1732520518774079,0.7688,False
+information_distillation,avg_concreteness,-0.19858268181130523,0.7664,False
+information_distillation,mean_rel_irrel_time_ratio,-3.9616985837736154,0.6318,False

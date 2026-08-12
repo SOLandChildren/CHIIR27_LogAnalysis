@@ -153,7 +153,7 @@ def get_final_answers(log_entries):
 
 # visualization
 
-def get_boxplots(df, categories, group, artefact, n_cols, n_rows, stats_df=None):
+def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, stats_df=None):
     plt.figure(figsize=(16,9))
     # plt.subplots_adjust(hspace=0.5)
     for i, category in enumerate(categories): 
@@ -181,12 +181,13 @@ def get_boxplots(df, categories, group, artefact, n_cols, n_rows, stats_df=None)
     handles, labels = ax.get_legend_handles_labels()
     # print(labels)
     plt.figlegend(handles, [legend_map[l] for l in labels], loc="upper center", ncol=2)
+    plt.savefig("Figures/"+search_stage+"_bar.pdf", dpi=300, bbox_inches='tight')
 
     # plt.figlegend(handles=legend_elements, loc="upper right")
     plt.show()
 
 
-def get_radar_plot(df, categories, artefact, group, normalized=True, stats_df=None):
+def get_radar_plot(df, search_stage, categories, artefact, group, normalized=True, stats_df=None):
 
     # for scaling in ["zscore", "minmax"]:
     #     if scaling=="zscore":
@@ -237,6 +238,7 @@ def get_radar_plot(df, categories, artefact, group, normalized=True, stats_df=No
     handles, labels = ax.get_legend_handles_labels()
     # print(labels)
     ax.legend(handles, [legend_map[l] for l in labels], loc='upper right', bbox_to_anchor=(1.1, 1.1))
+    plt.savefig("Figures/"+search_stage+"_radar.pdf", dpi=300, bbox_inches='tight')
     # plt.title(f"Scaled using {scaling}", y=1.05, fontsize=14)
 
     plt.show()

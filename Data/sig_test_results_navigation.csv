@@ -1,0 +1,10 @@
+search_stage,feature,ineffective_vs_effective_feature_mean_val_diff,pval,significant
+results_navigation,first_click_time,3.8386538461538464,0.8922,False
+results_navigation,avg_SERP_dwell_time_before_click,,0.0002,True
+results_navigation,avg_snippet_dwell_time_before_scroll_before_click,,0.0002,True
+results_navigation,avg_snippet_view_counts_before_click,,0.0002,True
+results_navigation,rank_lowest_view,2.0889423076923075,0.0616,False
+results_navigation,SERP_avg_length,0.46484816353237335,0.2584,False
+results_navigation,SERP_avg_gulpease_index,2.743612165954943,0.0158,True
+results_navigation,SERP_avg_conc,-0.39066375176397816,0.0108,True
+results_navigation,SERP_avg_aoa,0.1397509241053969,0.1258,False

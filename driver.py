@@ -316,7 +316,7 @@ def get_significance(df, performance_metric, threshold, stage, categories):
         pval = permutation_test(data=(ineffective_category, effective_category), statistic=statistic).pvalue
         sig_test_results.append([stage, category, statistic(ineffective_category, effective_category), pval, pval<0.05])
 
-    sig_test_df = pd.DataFrame(sig_test_results, columns=["search_stage", "feature", "feature_mean_val_diff", "pval", "significant"])
+    sig_test_df = pd.DataFrame(sig_test_results, columns=["search_stage", "feature", "ineffective_vs_effective_feature_mean_val_diff", "pval", "significant"])
     # sig_test_df.to_csv("sig_test_"+stage+".csv", index=False, encoding="utf8")
 
     return sig_test_df

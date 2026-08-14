@@ -299,11 +299,12 @@ def get_text_stats(df, text_col_name):
 
     return {"content_len": content_len, "mean_aoa": mean_aoa, "mean_conc": mean_conc, "gulpease_index": gulpease_index}
 
-def get_significance(df, performance_metric, threshold, stage, categories):
+# statistical significance tests
+def get_significance(df, effective_label, stage, categories):
     sig_test_results = []
 
-    effective = df.loc[df[performance_metric]>=threshold]
-    ineffective = df.loc[df[performance_metric]<threshold]
+    effective = df.loc[df[effective_label]==1]
+    ineffective = df.loc[df[effective_label]==0]
 
     def statistic(x, y):
         x = pd.Series(x, copy=False)

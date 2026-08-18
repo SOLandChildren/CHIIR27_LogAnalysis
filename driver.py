@@ -4,6 +4,7 @@ import json
 from scipy.stats import zscore
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
+from matplotlib.patches import Patch
 import seaborn as sns
 import re
 import textstat
@@ -158,7 +159,7 @@ def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, 
     # plt.subplots_adjust(hspace=0.5)
     for i, category in enumerate(categories): 
         ax = plt.subplot(n_rows, n_cols, i+1)
-        sns.boxplot(data=df, x=group, y=category, hue=group, showmeans=True,     
+        sns.boxplot(data=df, x=group, y=category, whis=[0.1, 0.9], hue=group, showmeans=True,     
                         meanprops={
                             "marker": "D",                    # Circle marker
                             "markerfacecolor": "white",       # White inside
@@ -186,6 +187,30 @@ def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, 
     # plt.figlegend(handles=legend_elements, loc="upper right")
     plt.show()
 
+def get_descriptive_stats(df, search_stage, categories, ncols, nrows):
+    descriptive_stats = []
+    fig, axes = plt.subplots(ncols = ncols, nrows=nrows, figsize=(16,9))
+    plt.subplots_adjust(hspace=0.75)
+    i=0
+    for ax, category in zip(axes.flat, categories):
+        if i < len(categories):
+            i+= 1
+            descriptive_stats.append([category, df[category].quantile(0.1), df[category].quantile(0.25), df[category].quantile(0.5), df[category].quantile(0.75), df[category].quantile(0.9)])
+            sns.boxplot(data=df, x=category, whis=[0.1, 0.9], ax=ax)
+            ax.set_title(category)
+            ax.set_xlabel("")
+            ax.set_ylabel("")
+        else:
+            break
+
+    fig.delaxes(axes.flatten()[i])
+
+    plt.savefig(f"Figures/desc_stats_{search_stage}.pdf", dpi=300, bbox_inches='tight')
+    plt.show()
+
+    descriptive_stats_df = pd.DataFrame(descriptive_stats, columns=["characteristic", "10th_percentile", "q1", "median", "q3", "90th_percentile"])
+    descriptive_stats_df.to_csv(f"Results/desc_stats_{search_stage}.csv", index=False, encoding="utf8")
+    return descriptive_stats_df
 
 def get_radar_plot(df, search_stage, categories, artefact, group, normalized=True, stats_df=None):
 
@@ -242,6 +267,100 @@ def get_radar_plot(df, search_stage, categories, artefact, group, normalized=Tru
     # plt.title(f"Scaled using {scaling}", y=1.05, fontsize=14)
 
     plt.show()
+
+def plot_characteristic_distribution(df, search_stage, performance_metric, categories, nrows, ncols):
+
+    # plotting the variety in behaviour
+    fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(16,9))
+    plt.subplots_adjust(hspace=0.45)
+    for ax, category in zip(axes.flat, categories): 
+        # ax = plt.subplot(nrows, ncols, i+1)
+        sns.boxplot(data=df, x=category, ax=ax, whis=[0.1, 0.9])
+        ax.set_title(category)
+
+        # xtick_map = {'0':'ineffective '+artefact, '1':'effective '+artefact}
+        # ax.set_xticklabels("")
+        ax.set_xlabel("")
+        ax.set_ylabel("")
+
+    # plt.savefig("Figures/"+search_stage+"_bar.pdf", dpi=300, bbox_inches='tight')
+
+    plt.suptitle(f"Diversity in behaviour characteristics during {search_stage}")
+    # plt.figlegend(handles=legend_elements, loc="upper right")
+    plt.show()
+
+    # plotting influence of characteristic on performance metric
+    # palette = {
+    #     0: "#1F77B4",
+    #     1: "#FF7F0E",
+    #     2: "#2CA02C"
+    # }
+
+    # fig, axes = plt.subplots(
+    #     nrows=nrows,
+    #     ncols=ncols,
+    #     figsize=(16, 9),
+    #     sharey=True
+    # )
+
+    # for ax, category in zip(axes.flat, categories):
+
+    #     plot_df = df[[category, performance_metric]].copy()
+
+    #     q1 = plot_df[category].quantile(0.25)
+    #     q3 = plot_df[category].quantile(0.75)   # Create mainstream groups
+    #     mainstream = []
+    #     for val in df[category]:
+    #         if val < q1:
+    #             mainstream.append(0)
+    #         elif val > q3:
+    #             mainstream.append(2)
+    #         else:
+    #             mainstream.append(1)
+    #     plot_df["mainstream"] = mainstream
+
+    #     sns.boxplot(
+    #         data=plot_df,
+    #         x="mainstream",
+    #         y=performance_metric,
+    #         whis = [0.1, 0.9],
+    #         palette=palette,
+    #         order=[0, 1, 2],
+    #         ax=ax,
+    #         hue="mainstream",
+    #         legend=False
+    #     )
+
+    #     ax.set_title(category)
+    #     ax.set_xlabel("")
+    #     ax.set_xticklabels("")
+    #     ax.set_ylabel(performance_metric)
+
+    # # remove unused axes
+    # for ax in axes[len(categories):]:
+    #     fig.delaxes(ax)
+
+    # # single legend for all subplots
+    # legend_handles = [
+    #     Patch(facecolor="#1F77B4", label="<Q1"),
+    #     Patch(facecolor="#FF7F0E", label="Q1-Q3 (mainstream)"),
+    #     Patch(facecolor="#2CA02C", label=">Q3")
+    # ]
+
+    # fig.legend(
+    #     handles=legend_handles,
+    #     loc="upper center",
+    #     bbox_to_anchor=(0.5, 0.95),
+    #     ncol=3
+    # )
+
+    # fig.suptitle(
+    #     f"Influence of behaviour characteristics during {search_stage} on {performance_metric}",
+    # )
+
+    # plt.show()
+
+
 
 # text processing
 def clean_text(text):
@@ -318,6 +437,6 @@ def get_significance(df, effective_label, stage, categories):
         sig_test_results.append([stage, category, statistic(ineffective_category, effective_category), pval, pval<0.05])
 
     sig_test_df = pd.DataFrame(sig_test_results, columns=["search_stage", "feature", "ineffective_vs_effective_feature_mean_val_diff", "pval", "significant"])
-    # sig_test_df.to_csv("sig_test_"+stage+".csv", index=False, encoding="utf8")
+    sig_test_df.to_csv(f"sig_test_{stage}.csv", index=False, encoding="utf8")
 
     return sig_test_df

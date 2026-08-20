@@ -1,8 +1,8 @@
-search_stage,feature,ineffective_vs_effective_feature_mean_val_diff,pval,significant
-information_distillation,mean_rel_time,-66.4494352355757,0.0416,True
-information_distillation,mean_irrel_time,-46.878087645687636,0.041,True
-information_distillation,rel_time_total_time_ratio,0.09294111934246141,0.3666,False
-information_distillation,avg_content_length,-91.39131089217312,0.54,False
-information_distillation,avg_gulpease_index,-1.4528580968791758,0.1338,False
-information_distillation,avg_aoa,-0.03104727576975197,0.7074,False
-information_distillation,avg_concreteness,-0.04969673781154693,0.7284,False
+search_stage,characteristic,test_statistic,pval,significant
+information_distillation,mean_rel_time,-23.477133333333335,0.2564,False
+information_distillation,mean_irrel_time,0.0,1.0,False
+information_distillation,rel_time_total_time_ratio,0.1453308795259678,0.4984,False
+information_distillation,avg_content_length,-249.3499999999999,0.3136,False
+information_distillation,avg_gulpease_index,-0.25921595741964865,0.5984,False
+information_distillation,avg_aoa,-0.05762396473428044,0.826,False
+information_distillation,avg_concreteness,-0.1301744186046525,0.546,False

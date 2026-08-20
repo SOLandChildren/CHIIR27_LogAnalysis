@@ -10,7 +10,7 @@ import re
 import textstat
 import spacy
 from tqdm.notebook import tqdm
-from scipy.stats import permutation_test
+from scipy.stats import permutation_test, median_abs_deviation
 
 # dataset creation
 
@@ -152,36 +152,173 @@ def get_final_answers(log_entries):
     final_answer_df = final_answer_df.drop_duplicates(ignore_index=True)
     return final_answer_df
 
+# text processing
+def clean_text(text):
+    try:
+        if pd.isna(text):
+            return ""
+        else:
+            text = re.sub(r"\s+", " ", text)
+            text = re.sub(r"\n+", ". ", text)
+            text = re.sub(r"\\'", "'", text)
+            text = re.sub(r"\"", "", text)
+            text = re.sub(r"\\'|[’‘]", "'", text)
+            text = text.replace("\xa0", " ") # Remove accidental escape sequences
+            return text.strip()
+    except Exception as e:
+        print(f"Error cleaning text {text}: {e}")
+        return text
+
+def get_text_stats(df, text_col_name):
+    textstat.set_lang("it")
+
+    nlp = spacy.load("it_core_news_sm")
+    ITaoa = pd.read_excel("Resources/ItAoA_database.xlsx")
+    concreteness = pd.read_excel("Resources/IT_concreteness_database.xlsx")
+
+    content_len = []
+    mean_aoa = []
+    gulpease_index = []
+    # fres = []
+    mean_conc = []
+
+    for _, row in tqdm(df.iterrows(), total=len(df)):
+        doc = nlp(row[text_col_name])
+        
+        # content length: number of words
+        content_len.append(sum(
+            1 for token in doc
+            if token.is_alpha or token.like_num
+        ))
+
+        # aoa and concreteness
+        aoa_vals = []
+        conc_vals = []
+        for token in doc:
+            if token.text.lower() in ITaoa["Ita_Word"].tolist():
+                aoa_vals.append(ITaoa.loc[ITaoa["Ita_Word"]==token.text.lower()]["M_AoA"].values[0])
+            if token.text.lower() in concreteness["Ita_Word"].tolist():
+                conc_vals.append(concreteness.loc[concreteness["Ita_Word"]==token.text.lower()]["M_Con"].values[0])
+        mean_aoa.append(np.mean(aoa_vals))
+        mean_conc.append(np.mean(conc_vals))
+
+        # readability
+        gulpease_index.append(textstat.gulpease_index(row[text_col_name]))
+        # fres.append(textstat.flesch_reading_ease(row[text_col_name]))
+
+    return {"content_len": content_len, "mean_aoa": mean_aoa, "mean_conc": mean_conc, "gulpease_index": gulpease_index}
+
+# statistical significance tests
+def get_significance(df, effective_label, search_stage, categories):
+    
+    effective = df.loc[df[effective_label]==1]
+    ineffective = df.loc[df[effective_label]==0]
+
+    desc_stats = []
+    for category in categories:
+        desc_stats.append([search_stage, category, ineffective[category].median(), median_abs_deviation(np.array(ineffective[category]), nan_policy="omit"), effective[category].median(), median_abs_deviation(np.array(effective[category]), nan_policy="omit")])
+
+    desc_stats_df = pd.DataFrame(desc_stats, columns=["search_stage", "characteristic", "ineffective_median", "ineffective_MAD", "effective_median", "effective_MAD"])
+    desc_stats_df.to_csv(f"Results/{search_stage}_effective_ineffective_desc_stats.csv", index=False, encoding="utf8")
+
+    sig_test_results = []
+    rng = np.random.default_rng(seed=111)
+    
+
+    def statistic(x, y):
+        # x = np.array(x)
+        x = x[~np.isnan(x)] # removing rows with NaN values
+        # y = np.array(y)
+        y = y[~np.isnan(y)]
+        return np.median(x) - np.median(y)
+        # return x.median() - y.median()
+
+    for category in categories:
+        res = permutation_test(data=(ineffective[category], effective[category]), statistic=statistic, rng=rng)
+        sig_test_results.append([search_stage, category, res.statistic, res.pvalue, res.pvalue<0.05])
+
+    sig_test_df = pd.DataFrame(sig_test_results, columns=["search_stage", "characteristic", "test_statistic", "pval", "significant"])
+    sig_test_df.to_csv(f"Results/sig_test_{search_stage}.csv", index=False, encoding="utf8")
+
+    return desc_stats_df, sig_test_df
+
 # visualization
 
 def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, stats_df=None):
     plt.figure(figsize=(16,9))
-    # plt.subplots_adjust(hspace=0.5)
+    plt.subplots_adjust(hspace=0.45)
+
+
     for i, category in enumerate(categories): 
-        ax = plt.subplot(n_rows, n_cols, i+1)
-        sns.boxplot(data=df, x=group, y=category, whis=[0.1, 0.9], hue=group, showmeans=True,     
-                        meanprops={
-                            "marker": "D",                    # Circle marker
-                            "markerfacecolor": "white",       # White inside
-                            "markeredgecolor": "black",       # Black border
-                            "markersize": "7"                 # Size of marker
-                        }
+        ax = plt.subplot(n_rows, n_cols, i+1) #nrows, ncols, index
+        outlier_flag = 0
+        # removing outliers for visualisation
+        if search_stage == "query_formulation":
+            if category == "gulpease_index":
+                outlier_flag = 1
+                outliers = df.loc[df[category] >= 300].index
+                data_df = df.drop(outliers, axis=0)
+                ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value >= 300")
+            elif category == "levenshtein_dist":
+                outlier_flag = 1
+                outliers = df.loc[df[category] > 4].index
+                data_df = df.drop(outliers, axis=0)
+                ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 4")
+            else:
+                data_df = df
+        elif search_stage == "results_navigation":
+            if category == "avg_scroll_time_before_click":
+                outlier_flag = 1
+                outliers = df.loc[df[category] > 80].index
+                data_df = df.drop(outliers, axis=0)
+                ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 80")
+            elif category == "avg_snippet_dwell_time_before_click":
+                outlier_flag = 1
+                outliers = df.loc[df[category]>150].index
+                data_df = df.drop(outliers, axis=0)
+                ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 150")
+            elif category == "first_click_time":
+                outlier_flag = 1
+                outliers = df.loc[df[category] > 50].index
+                data_df = df.drop(outliers, axis=0)
+                ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 50")
+            else:
+                data_df = df
+        elif search_stage == "information_distillation":
+            if category == "mean_irrel_time":
+                outlier_flag = 1
+                outliers = df.loc[df[category] > 100].index
+                data_df = df.drop(outliers, axis=0)
+                ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 100")
+            else:
+                data_df = df
+                
+        sns.boxplot(data=data_df, x=group, y=category, hue=group,
+                    # showmeans=True,     
+                    #     meanprops={
+                    #         "marker": "D",                    # Circle marker
+                    #         "markerfacecolor": "white",       # White inside
+                    #         "markeredgecolor": "black",       # Black border
+                    #         "markersize": "7"                 # Size of marker
+                    #     }
                     )
-        ax.set_title(category)
+        ax.set_title(category, fontdict={"fontsize": 20})
+        if outlier_flag == 0:
+            ax.set_xlabel("")
 
         # xtick_map = {'0':'ineffective '+artefact, '1':'effective '+artefact}
         ax.set_xticklabels("")
-        ax.set_xlabel("")
+        # ax.set_xlabel("")
         ax.set_ylabel("")
-        if (stats_df is not None) and (stats_df.loc[stats_df["feature"]==category]["significant"].values[0]==True):
-            ax.set_title(category+" *")
+        if (stats_df is not None) and (stats_df.loc[stats_df["characteristic"]==category]["significant"].values[0]==True):
+            ax.set_title(category+" *", fontdict={"fontsize": 20})
         ax.legend().remove()
 
     legend_map = {'0':'ineffective '+artefact, '1':'effective '+artefact}
 
     handles, labels = ax.get_legend_handles_labels()
     # print(labels)
-    plt.figlegend(handles, [legend_map[l] for l in labels], loc="upper center", ncol=2)
+    plt.figlegend(handles, [legend_map[l] for l in labels], loc="upper center", ncol=2, fontsize=20)
     plt.savefig("Figures/"+search_stage+"_bar.pdf", dpi=300, bbox_inches='tight')
 
     # plt.figlegend(handles=legend_elements, loc="upper right")
@@ -203,7 +340,8 @@ def get_descriptive_stats(df, search_stage, categories, ncols, nrows):
         else:
             break
 
-    fig.delaxes(axes.flatten()[i])
+    for ax_id in range(i, nrows*ncols):
+        fig.delaxes(axes.flatten()[ax_id])
 
     plt.savefig(f"Figures/desc_stats_{search_stage}.pdf", dpi=300, bbox_inches='tight')
     plt.show()
@@ -359,84 +497,3 @@ def plot_characteristic_distribution(df, search_stage, performance_metric, categ
     # )
 
     # plt.show()
-
-
-
-# text processing
-def clean_text(text):
-    try:
-        if pd.isna(text):
-            return ""
-        else:
-            text = re.sub(r"\s+", " ", text)
-            text = re.sub(r"\n+", ". ", text)
-            text = re.sub(r"\\'", "'", text)
-            text = re.sub(r"\"", "", text)
-            text = re.sub(r"\\'|[’‘]", "'", text)
-            text = text.replace("\xa0", " ") # Remove accidental escape sequences
-            return text.strip()
-    except Exception as e:
-        print(f"Error cleaning text {text}: {e}")
-        return text
-
-def get_text_stats(df, text_col_name):
-    textstat.set_lang("it")
-
-    nlp = spacy.load("it_core_news_sm")
-    ITaoa = pd.read_excel("Resources/ItAoA_database.xlsx")
-    concreteness = pd.read_excel("Resources/IT_concreteness_database.xlsx")
-
-    content_len = []
-    mean_aoa = []
-    gulpease_index = []
-    # fres = []
-    mean_conc = []
-
-    for _, row in tqdm(df.iterrows(), total=len(df)):
-        doc = nlp(row[text_col_name])
-        
-        # content length: number of words
-        content_len.append(sum(
-            1 for token in doc
-            if token.is_alpha or token.like_num
-        ))
-
-        # aoa and concreteness
-        aoa_vals = []
-        conc_vals = []
-        for token in doc:
-            if token.text.lower() in ITaoa["Ita_Word"].tolist():
-                aoa_vals.append(ITaoa.loc[ITaoa["Ita_Word"]==token.text.lower()]["M_AoA"].values[0])
-            if token.text.lower() in concreteness["Ita_Word"].tolist():
-                conc_vals.append(concreteness.loc[concreteness["Ita_Word"]==token.text.lower()]["M_Con"].values[0])
-        mean_aoa.append(np.mean(aoa_vals))
-        mean_conc.append(np.mean(conc_vals))
-
-        # readability
-        gulpease_index.append(textstat.gulpease_index(row[text_col_name]))
-        # fres.append(textstat.flesch_reading_ease(row[text_col_name]))
-
-    return {"content_len": content_len, "mean_aoa": mean_aoa, "mean_conc": mean_conc, "gulpease_index": gulpease_index}
-
-# statistical significance tests
-def get_significance(df, effective_label, stage, categories):
-    sig_test_results = []
-
-    effective = df.loc[df[effective_label]==1]
-    ineffective = df.loc[df[effective_label]==0]
-
-    def statistic(x, y):
-        x = pd.Series(x, copy=False)
-        y = pd.Series(y, copy=False)
-        return x.mean() - y.mean()
-
-    for category in categories:
-        ineffective_category = ineffective[category]
-        effective_category = effective[category]
-        pval = permutation_test(data=(ineffective_category, effective_category), statistic=statistic).pvalue
-        sig_test_results.append([stage, category, statistic(ineffective_category, effective_category), pval, pval<0.05])
-
-    sig_test_df = pd.DataFrame(sig_test_results, columns=["search_stage", "feature", "ineffective_vs_effective_feature_mean_val_diff", "pval", "significant"])
-    sig_test_df.to_csv(f"sig_test_{stage}.csv", index=False, encoding="utf8")
-
-    return sig_test_df

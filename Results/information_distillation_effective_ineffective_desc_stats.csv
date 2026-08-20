@@ -1,0 +1,8 @@
+search_stage,characteristic,ineffective_median,ineffective_MAD,effective_median,effective_MAD
+information_distillation,mean_rel_time,32.903666666666666,32.3495,56.3808,52.04899999999999
+information_distillation,mean_irrel_time,0.0,0.0,0.0,0.0
+information_distillation,rel_time_total_time_ratio,0.9832765180508314,0.016723481949168617,0.8379456385248636,0.1620543614751364
+information_distillation,avg_content_length,1071.65,206.0,1321.0,288.55555555555566
+information_distillation,avg_gulpease_index,50.468690928405714,1.8880877301245853,50.72790688582536,2.1418838770869257
+information_distillation,avg_aoa,5.399654807644237,0.17593244803576003,5.457278772378517,0.16472948587974034
+information_distillation,avg_concreteness,6.177325581395348,0.16661381254404617,6.3075,0.14881661047165107

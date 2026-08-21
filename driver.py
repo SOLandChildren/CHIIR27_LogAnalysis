@@ -266,7 +266,7 @@ def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, 
                 ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 4")
             else:
                 data_df = df
-        elif search_stage == "results_navigation":
+        elif "results_navigation" in search_stage:
             if category == "avg_scroll_time_before_click":
                 outlier_flag = 1
                 outliers = df.loc[df[category] > 80].index
@@ -302,7 +302,7 @@ def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, 
                     #         "markersize": "7"                 # Size of marker
                     #     }
                     )
-        ax.set_title(category, fontdict={"fontsize": 20})
+        ax.set_title(category, fontdict={"fontsize": 15})
         if outlier_flag == 0:
             ax.set_xlabel("")
 
@@ -311,7 +311,7 @@ def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, 
         # ax.set_xlabel("")
         ax.set_ylabel("")
         if (stats_df is not None) and (stats_df.loc[stats_df["characteristic"]==category]["significant"].values[0]==True):
-            ax.set_title(category+" *", fontdict={"fontsize": 20})
+            ax.set_title(category+" *", fontdict={"fontsize": 15})
         ax.legend().remove()
 
     legend_map = {'0':'ineffective '+artefact, '1':'effective '+artefact}

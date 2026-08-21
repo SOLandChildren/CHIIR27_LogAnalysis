@@ -1,0 +1,10 @@
+search_stage,characteristic,ineffective_median,ineffective_MAD,effective_median,effective_MAD
+results_navigation_nav_eff,first_click_time,16.861,9.532,19.3435,11.9905
+results_navigation_nav_eff,avg_scroll_time_before_click,7.046199999999999,5.683000000000002,7.21805,7.21055
+results_navigation_nav_eff,avg_snippet_dwell_time_before_click,5.45275,1.7906499999999994,6.864190476190476,2.954917748917749
+results_navigation_nav_eff,avg_snippet_view_counts_before_click,1.0833333333333333,0.08333333333333326,1.0,0.0
+results_navigation_nav_eff,rank_lowest_view,4.0,2.0,4.0,2.0
+results_navigation_nav_eff,viewed_avg_length,33.0,1.5,32.1,1.3999999999999986
+results_navigation_nav_eff,viewed_avg_gulpease_index,67.94013875115068,3.254063078855367,64.48799893099114,4.815018987346896
+results_navigation_nav_eff,viewed_avg_conc,6.0,0.5291666666666668,6.3675,0.22708333333333286
+results_navigation_nav_eff,viewed_avg_aoa,5.251733333333334,0.3811848214285707,5.16,0.22250000000000014

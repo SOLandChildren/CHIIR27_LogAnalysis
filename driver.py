@@ -324,31 +324,50 @@ def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, 
     # plt.figlegend(handles=legend_elements, loc="upper right")
     plt.show()
 
-def get_descriptive_stats(df, search_stage, categories, ncols, nrows):
-    descriptive_stats = []
-    fig, axes = plt.subplots(ncols = ncols, nrows=nrows, figsize=(16,9))
-    plt.subplots_adjust(hspace=0.75)
-    i=0
-    for ax, category in zip(axes.flat, categories):
-        if i < len(categories):
-            i+= 1
-            descriptive_stats.append([category, df[category].quantile(0.1), df[category].quantile(0.25), df[category].quantile(0.5), df[category].quantile(0.75), df[category].quantile(0.9)])
-            sns.boxplot(data=df, x=category, whis=[0.1, 0.9], ax=ax)
-            ax.set_title(category)
-            ax.set_xlabel("")
-            ax.set_ylabel("")
+def get_descriptive_stats(df, search_stage, categories, ncols, nrows, binwidth_map=None):
+    desc_stats = []
+
+    fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=(16,9))
+    plt.subplots_adjust(hspace=0.45)
+
+    for ax, category in zip(axes.flatten(), categories):
+
+        if binwidth_map == None:
+            sns.histplot(
+                    data=df[category],
+                    ax=ax,
+                    stat="proportion",
+                    alpha=0.5,
+                )
         else:
-            break
+            sns.histplot(
+                data=df[category],
+                ax=ax,
+                binwidth=binwidth_map[category],
+                stat="proportion",
+                alpha=0.5,
+            )
 
-    for ax_id in range(i, nrows*ncols):
-        fig.delaxes(axes.flatten()[ax_id])
+        x = df[category].dropna()
+        mean = x.mean()
+        median = x.median()
+        modes = x.mode().tolist()
+        std_dev = x.std()
+        maximum = x.max()
+        minimum = x.min()
+        desc_stats.append([category, mean, std_dev, maximum, minimum, median, modes])
+        
+        ax.set_xlabel("")
+        ax.set_ylabel("")
+        ax.set_title(category, fontdict={"fontsize":15})
+        # ax.set_yticklabels([])
+    # plt.legend()
 
-    plt.savefig(f"Figures/desc_stats_{search_stage}.pdf", dpi=300, bbox_inches='tight')
+    plt.savefig(f"Figures/desc_stats_{search_stage}.pdf", dpi=300, bbox_inches="tight")
     plt.show()
-
-    descriptive_stats_df = pd.DataFrame(descriptive_stats, columns=["characteristic", "10th_percentile", "q1", "median", "q3", "90th_percentile"])
-    descriptive_stats_df.to_csv(f"Results/desc_stats_{search_stage}.csv", index=False, encoding="utf8")
-    return descriptive_stats_df
+    desc_stats_df = pd.DataFrame(desc_stats, columns=["category", "mean", "std_dev", "max", "min", "median", "modes"])
+    desc_stats_df.to_csv(f"Results/desc_stats_{search_stage}.csv", index=False, encoding="utf8")
+    return desc_stats_df
 
 def get_radar_plot(df, search_stage, categories, artefact, group, normalized=True, stats_df=None):
 

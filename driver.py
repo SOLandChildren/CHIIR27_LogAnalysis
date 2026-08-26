@@ -172,7 +172,7 @@ def clean_text(text):
 def get_text_stats(df, text_col_name):
     textstat.set_lang("it")
 
-    nlp = spacy.load("it_core_news_sm")
+    nlp = spacy.load("it_core_news_lg")
     ITaoa = pd.read_excel("Resources/ItAoA_database.xlsx")
     concreteness = pd.read_excel("Resources/IT_concreteness_database.xlsx")
 
@@ -186,10 +186,11 @@ def get_text_stats(df, text_col_name):
         doc = nlp(row[text_col_name])
         
         # content length: number of words
-        content_len.append(sum(
-            1 for token in doc
-            if token.is_alpha or token.like_num
-        ))
+        words = []
+        for token in doc:
+            if token.pos_ not in ["SYM", "X", "PUNCT"]:
+                words.append(token.text.strip().lower())
+        content_len.append(len(words))
 
         # aoa and concreteness
         aoa_vals = []
@@ -199,8 +200,15 @@ def get_text_stats(df, text_col_name):
                 aoa_vals.append(ITaoa.loc[ITaoa["Ita_Word"]==token.text.lower()]["M_AoA"].values[0])
             if token.text.lower() in concreteness["Ita_Word"].tolist():
                 conc_vals.append(concreteness.loc[concreteness["Ita_Word"]==token.text.lower()]["M_Con"].values[0])
-        mean_aoa.append(np.mean(aoa_vals))
-        mean_conc.append(np.mean(conc_vals))
+
+        if len(aoa_vals)==0:
+            mean_aoa.append(None)
+        else:
+            mean_aoa.append(np.mean(aoa_vals))
+        if len(conc_vals) == 0:
+            mean_conc.append(None)
+        else:
+            mean_conc.append(np.mean(conc_vals))
 
         # readability
         gulpease_index.append(textstat.gulpease_index(row[text_col_name]))
@@ -214,9 +222,26 @@ def get_significance(df, effective_label, search_stage, categories):
     effective = df.loc[df[effective_label]==1]
     ineffective = df.loc[df[effective_label]==0]
 
+
     desc_stats = []
     for category in categories:
-        desc_stats.append([search_stage, category, ineffective[category].median(), median_abs_deviation(np.array(ineffective[category]), nan_policy="omit"), effective[category].median(), median_abs_deviation(np.array(effective[category]), nan_policy="omit")])
+
+        effective_cat = effective[category].dropna()
+        ineffective_cat = ineffective[category].dropna()
+
+        if len(ineffective) == 0:
+                ineffective_med = None
+                ineffective_MAD = None
+        else:
+            ineffective_med = ineffective_cat.median()
+            ineffective_MAD = (ineffective_cat - ineffective_med).abs().median()
+        if len(effective) == 0:
+            effective_med = None
+            effective_MAD = None
+        else:
+            effective_med = effective_cat.median()
+            effective_MAD = (effective_cat - effective_med).abs().median()
+        desc_stats.append([search_stage, category, ineffective_med, ineffective_MAD, effective_med, effective_MAD])
 
     desc_stats_df = pd.DataFrame(desc_stats, columns=["search_stage", "characteristic", "ineffective_median", "ineffective_MAD", "effective_median", "effective_MAD"])
     desc_stats_df.to_csv(f"Results/{search_stage}_effective_ineffective_desc_stats.csv", index=False, encoding="utf8")
@@ -327,26 +352,46 @@ def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, 
 def get_descriptive_stats(df, search_stage, categories, ncols, nrows, binwidth_map=None):
     desc_stats = []
 
-    fig, axes = plt.subplots(ncols=ncols, nrows=nrows, figsize=(16,9))
+    fig, axes = plt.subplots(
+        ncols=ncols, 
+        nrows=nrows, 
+        figsize=(16,9),
+        # sharey=True
+    )
     plt.subplots_adjust(hspace=0.45)
 
     for ax, category in zip(axes.flatten(), categories):
+    # for category in categories:
 
-        if binwidth_map == None:
-            sns.histplot(
-                    data=df[category],
-                    ax=ax,
-                    stat="proportion",
-                    alpha=0.5,
-                )
-        else:
+        # fig, ax = plt.subplots()
+        if category in ["num_concepts", "levenshtein_dist", "num_typos", "query_len"]:
             sns.histplot(
                 data=df[category],
                 ax=ax,
-                binwidth=binwidth_map[category],
                 stat="proportion",
                 alpha=0.5,
+                discrete=True
             )
+        else:
+            if binwidth_map == None:
+                sns.histplot(
+                        data=df[category],
+                        ax=ax,
+                        stat="proportion",
+                        alpha=0.5,
+                    )
+            else:
+                sns.histplot(
+                    data=df[category],
+                    ax=ax,
+                    binwidth=binwidth_map[category],
+                    stat="proportion",
+                    alpha=0.5,
+                )
+
+        if category=="gulpease_index":
+            ax.axvline(80, linestyle="--", color="red")
+            ax.axvline(80, linestyle="--", color="red")
 
         x = df[category].dropna()
         mean = x.mean()
@@ -360,9 +405,11 @@ def get_descriptive_stats(df, search_stage, categories, ncols, nrows, binwidth_m
         ax.set_xlabel("")
         ax.set_ylabel("")
         ax.set_title(category, fontdict={"fontsize":15})
-        # ax.set_yticklabels([])
-    # plt.legend()
 
+        # ax.set_yticklabels([])
+
+        # plt.savefig(f"Figures/desc_stats_{search_stage}_{category}.pdf", dpi=300, bbox_inches="tight")
+        # plt.show()
     plt.savefig(f"Figures/desc_stats_{search_stage}.pdf", dpi=300, bbox_inches="tight")
     plt.show()
     desc_stats_df = pd.DataFrame(desc_stats, columns=["category", "mean", "std_dev", "max", "min", "median", "modes"])

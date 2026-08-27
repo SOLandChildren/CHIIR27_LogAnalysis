@@ -3,8 +3,8 @@ results_navigation_tail_ratio,first_click_time,21.026,12.418499999999998,18.88,1
 results_navigation_tail_ratio,avg_scroll_time_before_click,6.826933333333333,4.5973,7.66,7.652
 results_navigation_tail_ratio,avg_snippet_dwell_time_before_click,5.079933468013468,1.5883112457912454,6.816,2.849435294117646
 results_navigation_tail_ratio,avg_snippet_view_counts_before_click,1.0597222222222222,0.050000000000000044,1.05,0.050000000000000044
-results_navigation_tail_ratio,rank_lowest_view,3.0,1.0,6.5,3.5
-results_navigation_tail_ratio,viewed_avg_length,34.7,1.4485294117647065,33.95,1.1214285714285737
-results_navigation_tail_ratio,viewed_avg_gulpease_index,68.04163647334173,2.9849548161800286,64.73982169778277,4.838925828593684
-results_navigation_tail_ratio,viewed_avg_conc,6.119097222222223,0.5920138888888897,6.264291666666667,0.31048774509803945
-results_navigation_tail_ratio,viewed_avg_aoa,5.2358666666666664,0.4263888888888898,5.1780333333333335,0.25319411764705935
+results_navigation_tail_ratio,rank_lowest_view,8.5,2.0,6.5,3.5
+results_navigation_tail_ratio,viewed_avg_length,69.51105085689363,1.5709121057429343,64.73982169778276,5.111483584627646
+results_navigation_tail_ratio,viewed_avg_gulpease_index,33.95,1.431818181818187,33.95,1.1214285714285737
+results_navigation_tail_ratio,viewed_avg_conc,5.578125,0.5114583333333336,6.264291666666667,0.310487745098039
+results_navigation_tail_ratio,viewed_avg_aoa,5.155777777777778,0.15053174603174613,5.1780333333333335,0.2531941176470589

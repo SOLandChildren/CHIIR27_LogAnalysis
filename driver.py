@@ -273,6 +273,7 @@ def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, 
     plt.figure(figsize=(16,9))
     plt.subplots_adjust(hspace=0.45)
 
+    df = df.loc[pd.notna(df[group])]
 
     for i, category in enumerate(categories): 
         ax = plt.subplot(n_rows, n_cols, i+1) #nrows, ncols, index
@@ -339,7 +340,7 @@ def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, 
             ax.set_title(category+" *", fontdict={"fontsize": 15})
         ax.legend().remove()
 
-    legend_map = {'0':'ineffective '+artefact, '1':'effective '+artefact}
+    legend_map = {'0.0':'ineffective '+artefact, '1.0':'effective '+artefact}
 
     handles, labels = ax.get_legend_handles_labels()
     # print(labels)
@@ -364,34 +365,79 @@ def get_descriptive_stats(df, search_stage, categories, ncols, nrows, binwidth_m
     # for category in categories:
 
         # fig, ax = plt.subplots()
-        if category in ["num_concepts", "levenshtein_dist", "num_typos", "query_len"]:
+        if category in ["num_concepts", "levenshtein_dist", "num_typos", "query_len", "rank_lowest_view"]:
             sns.histplot(
                 data=df[category],
                 ax=ax,
                 stat="proportion",
-                alpha=0.5,
-                discrete=True
+                alpha=0.1,
+                discrete=True,
+                kde=True,
+                kde_kws={"cut":0}
             )
+
+            # sns.histplot(
+            #     data=df[category],
+            #     ax=ax,
+            #     stat="proportion",
+            #     element="poly",
+            #     fill=False,
+            #     discrete=True
+            # )
+            # # Get bin edges from the bar patches
+            # bin_edges = [p.get_x() for p in ax.patches]
+            # bin_edges.append(ax.patches[-1].get_x() + ax.patches[-1].get_width())
+            # # print(bin_edges)
+
+            # # Show all bin edges as xticks
+            # ax.set_xticks(bin_edges)
+            # ax.set_xticklabels([f'{x:.0f}' for x in bin_edges], rotation=45)
         else:
             if binwidth_map == None:
                 sns.histplot(
                         data=df[category],
                         ax=ax,
                         stat="proportion",
-                        alpha=0.5,
+                        alpha=0.1,
+                        kde=True,
+                        kde_kws={"cut":0}
                     )
+                # sns.histplot(
+                #         data=df[category],
+                #         ax=ax,
+                #         stat="proportion",
+                #         fill=False,
+                #         element="poly"
+                #     )
             else:
                 sns.histplot(
                     data=df[category],
                     ax=ax,
                     binwidth=binwidth_map[category],
                     stat="proportion",
-                    alpha=0.5,
+                    alpha=0.1,
+                    kde=True,
+                    kde_kws={"cut":0}
                 )
+                # sns.histplot(
+                #     data=df[category],
+                #     ax=ax,
+                #     binwidth=binwidth_map[category],
+                #     stat="proportion",
+                #     fill=False,
+                #     element="poly"
+                # )
+                # # Get bin edges from the bar patches
+                # bin_edges = [p.get_x() for p in ax.patches]
+                # bin_edges.append(ax.patches[-1].get_x() + ax.patches[-1].get_width())
+                # print(bin_edges)
 
-        if category=="gulpease_index":
-            ax.axvline(80, linestyle="--", color="red")
-            ax.axvline(80, linestyle="--", color="red")
+                # # Show all bin edges as xticks
+                # ax.set_xticks(bin_edges)
+                # ax.set_xticklabels([f'{x:.2f}' for x in bin_edges], rotation=45)
+
+        # if category=="gulpease_index":
+        #     ax.axvline(80, linestyle="--", color="red")
 
         x = df[category].dropna()
         mean = x.mean()
@@ -400,16 +446,25 @@ def get_descriptive_stats(df, search_stage, categories, ncols, nrows, binwidth_m
         std_dev = x.std()
         maximum = x.max()
         minimum = x.min()
+
+        # ax.axvline(mean, linestyle="--", color="green", label="mean")
+        ax.axvline(median, linestyle=":", color="red", label="median")
+        # for mode in modes:
+        #     ax.axvline(mode, linestyle=":", color="black", label="mode")
+        # ax.axvspan(mean-std_dev, mean+std_dev, alpha=0.2, fill=True, color="red", label="mean ± std")
+
         desc_stats.append([category, mean, std_dev, maximum, minimum, median, modes])
         
-        ax.set_xlabel("")
-        ax.set_ylabel("")
-        ax.set_title(category, fontdict={"fontsize":15})
+        # ax.set_xlabel(category, fontdict={"fontsize":15})
+    #     ax.set_ylabel("")
+        # ax.set_title("")
 
-        # ax.set_yticklabels([])
+    #     # ax.set_yticklabels([])
 
-        # plt.savefig(f"Figures/desc_stats_{search_stage}_{category}.pdf", dpi=300, bbox_inches="tight")
-        # plt.show()
+    #     # plt.savefig(f"Figures/desc_stats_{search_stage}_{category}.pdf", dpi=300, bbox_inches="tight")
+    #     # plt.show()
+    handles, labels = ax.get_legend_handles_labels()
+    # plt.figlegend(handles, labels, loc="upper center", ncol=1, fontsize=20)
     plt.savefig(f"Figures/desc_stats_{search_stage}.pdf", dpi=300, bbox_inches="tight")
     plt.show()
     desc_stats_df = pd.DataFrame(desc_stats, columns=["category", "mean", "std_dev", "max", "min", "median", "modes"])
@@ -418,21 +473,7 @@ def get_descriptive_stats(df, search_stage, categories, ncols, nrows, binwidth_m
 
 def get_radar_plot(df, search_stage, categories, artefact, group, normalized=True, stats_df=None):
 
-    # for scaling in ["zscore", "minmax"]:
-    #     if scaling=="zscore":
-
     scaled_df = df[categories].apply(zscore, nan_policy='omit')
-        # print(z_standardized)
-    # elif scaling == "minmax":
-
-    #     scaler = MinMaxScaler()
-
-    #     scaled_df = pd.DataFrame(
-    #         scaler.fit_transform(df[categories]),
-    #         columns=categories,
-    #         index=df.index
-    #     )
-
     scaled_df[group] = df[group]
     cluster_means = scaled_df.groupby(group).mean()
     # cluster_means = cluster_means.apply(zscore)
@@ -471,95 +512,3 @@ def get_radar_plot(df, search_stage, categories, artefact, group, normalized=Tru
     # plt.title(f"Scaled using {scaling}", y=1.05, fontsize=14)
 
     plt.show()
-
-def plot_characteristic_distribution(df, search_stage, performance_metric, categories, nrows, ncols):
-
-    # plotting the variety in behaviour
-    fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(16,9))
-    plt.subplots_adjust(hspace=0.45)
-    for ax, category in zip(axes.flat, categories): 
-        # ax = plt.subplot(nrows, ncols, i+1)
-        sns.boxplot(data=df, x=category, ax=ax, whis=[0.1, 0.9])
-        ax.set_title(category)
-
-        # xtick_map = {'0':'ineffective '+artefact, '1':'effective '+artefact}
-        # ax.set_xticklabels("")
-        ax.set_xlabel("")
-        ax.set_ylabel("")
-
-    # plt.savefig("Figures/"+search_stage+"_bar.pdf", dpi=300, bbox_inches='tight')
-
-    plt.suptitle(f"Diversity in behaviour characteristics during {search_stage}")
-    # plt.figlegend(handles=legend_elements, loc="upper right")
-    plt.show()
-
-    # plotting influence of characteristic on performance metric
-    # palette = {
-    #     0: "#1F77B4",
-    #     1: "#FF7F0E",
-    #     2: "#2CA02C"
-    # }
-
-    # fig, axes = plt.subplots(
-    #     nrows=nrows,
-    #     ncols=ncols,
-    #     figsize=(16, 9),
-    #     sharey=True
-    # )
-
-    # for ax, category in zip(axes.flat, categories):
-
-    #     plot_df = df[[category, performance_metric]].copy()
-
-    #     q1 = plot_df[category].quantile(0.25)
-    #     q3 = plot_df[category].quantile(0.75)   # Create mainstream groups
-    #     mainstream = []
-    #     for val in df[category]:
-    #         if val < q1:
-    #             mainstream.append(0)
-    #         elif val > q3:
-    #             mainstream.append(2)
-    #         else:
-    #             mainstream.append(1)
-    #     plot_df["mainstream"] = mainstream
-
-    #     sns.boxplot(
-    #         data=plot_df,
-    #         x="mainstream",
-    #         y=performance_metric,
-    #         whis = [0.1, 0.9],
-    #         palette=palette,
-    #         order=[0, 1, 2],
-    #         ax=ax,
-    #         hue="mainstream",
-    #         legend=False
-    #     )
-
-    #     ax.set_title(category)
-    #     ax.set_xlabel("")
-    #     ax.set_xticklabels("")
-    #     ax.set_ylabel(performance_metric)
-
-    # # remove unused axes
-    # for ax in axes[len(categories):]:
-    #     fig.delaxes(ax)
-
-    # # single legend for all subplots
-    # legend_handles = [
-    #     Patch(facecolor="#1F77B4", label="<Q1"),
-    #     Patch(facecolor="#FF7F0E", label="Q1-Q3 (mainstream)"),
-    #     Patch(facecolor="#2CA02C", label=">Q3")
-    # ]
-
-    # fig.legend(
-    #     handles=legend_handles,
-    #     loc="upper center",
-    #     bbox_to_anchor=(0.5, 0.95),
-    #     ncol=3
-    # )
-
-    # fig.suptitle(
-    #     f"Influence of behaviour characteristics during {search_stage} on {performance_metric}",
-    # )
-
-    # plt.show()

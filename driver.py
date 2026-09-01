@@ -136,6 +136,23 @@ def get_explored_web_pages(log_entries):
 
     return web_pages_df
 
+def get_partial_answers(log_entries):
+    part_answers = []
+    for entry in log_entries:
+        if (entry["type"] == "AnswerBoxClosed") or (entry["type"] == "ClickedOnSendAndTerminateTask"):
+            uid = entry["uid"]
+            topic_num = entry["actual_topic_number"]
+            answer = entry["answer"]
+            if pd.isna(answer):
+                answer = ""
+            timestamp = entry["timestamp"]
+            part_answers.append([uid, assign_topic_number(uid, topic_num), answer, timestamp])
+
+    part_answers_df = pd.DataFrame(part_answers, columns = ["uid", "topic_number", "answer", "timestamp"])
+    part_answers_df["uid"] = part_answers_df["uid"].astype("Int64")
+    part_answers_df["timestamp"] = pd.to_datetime(part_answers_df["timestamp"])
+    return part_answers_df
+
 def get_final_answers(log_entries):
     final_answer = []
     topics = pd.read_csv("Data/topics.csv")
@@ -340,7 +357,7 @@ def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, 
             ax.set_title(category+" *", fontdict={"fontsize": 15})
         ax.legend().remove()
 
-    legend_map = {'0.0':'ineffective '+artefact, '1.0':'effective '+artefact}
+    legend_map = {'0.0':'ineffective '+artefact, '0':'ineffective '+artefact, '1.0':'effective '+artefact, '1':'effective '+artefact}
 
     handles, labels = ax.get_legend_handles_labels()
     # print(labels)
@@ -353,18 +370,12 @@ def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, 
 def get_descriptive_stats(df, search_stage, categories, ncols, nrows, binwidth_map=None):
     desc_stats = []
 
-    fig, axes = plt.subplots(
-        ncols=ncols, 
-        nrows=nrows, 
-        figsize=(16,9),
-        # sharey=True
-    )
+    plt.figure(figsize=(16,9))
     plt.subplots_adjust(hspace=0.45)
 
-    for ax, category in zip(axes.flatten(), categories):
+    for i, category in enumerate(categories): 
+        ax = plt.subplot(nrows, ncols, i+1) #nrows, ncols, index
     # for category in categories:
-
-        # fig, ax = plt.subplots()
         if category in ["num_concepts", "levenshtein_dist", "num_typos", "query_len", "rank_lowest_view"]:
             sns.histplot(
                 data=df[category],
@@ -465,6 +476,7 @@ def get_descriptive_stats(df, search_stage, categories, ncols, nrows, binwidth_m
     #     # plt.show()
     handles, labels = ax.get_legend_handles_labels()
     # plt.figlegend(handles, labels, loc="upper center", ncol=1, fontsize=20)
+
     plt.savefig(f"Figures/desc_stats_{search_stage}.pdf", dpi=300, bbox_inches="tight")
     plt.show()
     desc_stats_df = pd.DataFrame(desc_stats, columns=["category", "mean", "std_dev", "max", "min", "median", "modes"])

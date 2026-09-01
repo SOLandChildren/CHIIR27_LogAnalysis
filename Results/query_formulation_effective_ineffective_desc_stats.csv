@@ -1,10 +1,10 @@
 search_stage,characteristic,ineffective_median,ineffective_MAD,effective_median,effective_MAD
-query_formulation,lex_density,0.5,0.08571428571428574,1.0,0.0
+query_formulation,lex_density,0.5,0.09999999999999998,1.0,0.0
 query_formulation,mean_aoa,4.8,0.2999999999999998,5.779999999999999,0.8200000000000003
-query_formulation,gulpease_index,81.25,6.7954545454545325,125.66666666666669,13.333333333333314
+query_formulation,gulpease_index,81.5,7.5,125.66666666666669,13.333333333333314
 query_formulation,num_typos,0.0,0.0,0.0,0.0
 query_formulation,levenshtein_dist,0.0,0.0,0.0,0.0
 query_formulation,num_concepts,3.0,1.0,2.0,1.0
-query_formulation,mean_concepts_conc,7.0375,0.8125,7.5,0.0
+query_formulation,mean_concepts_conc,6.574999999999999,0.9250000000000007,7.5,0.0
 query_formulation,query_len,8.0,3.0,3.0,0.0
 query_formulation,stop_word_ratio,0.5,0.125,0.0,0.0

@@ -10,7 +10,7 @@ import re
 import textstat
 import spacy
 from tqdm.notebook import tqdm
-from scipy.stats import permutation_test, median_abs_deviation
+from scipy.stats import permutation_test, median_abs_deviation,mannwhitneyu
 
 # dataset creation
 
@@ -277,6 +277,7 @@ def get_significance(df, effective_label, search_stage, categories):
 
     for category in categories:
         res = permutation_test(data=(ineffective[category], effective[category]), statistic=statistic, rng=rng)
+        # res = mannwhitneyu(ineffective[category], effective[category], nan_policy="omit", alternative="two-sided")
         sig_test_results.append([search_stage, category, res.statistic, res.pvalue, res.pvalue<0.05])
 
     sig_test_df = pd.DataFrame(sig_test_results, columns=["search_stage", "characteristic", "test_statistic", "pval", "significant"])
@@ -288,7 +289,7 @@ def get_significance(df, effective_label, search_stage, categories):
 
 def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, stats_df=None):
     plt.figure(figsize=(16,9))
-    plt.subplots_adjust(hspace=0.45)
+    plt.subplots_adjust(hspace=0.65)
 
     df = df.loc[pd.notna(df[group])]
 
@@ -376,7 +377,7 @@ def get_descriptive_stats(df, search_stage, categories, ncols, nrows, binwidth_m
     for i, category in enumerate(categories): 
         ax = plt.subplot(nrows, ncols, i+1) #nrows, ncols, index
     # for category in categories:
-        if category in ["num_concepts", "levenshtein_dist", "num_typos", "query_len", "rank_lowest_view"]:
+        if category in ["num_concepts", "levenshtein_dist", "num_typos", "query_len", "rank_lowest_view", "SERP_total_results", "SERP_highest_rel_result", "tail", "repetitions"]:
             sns.histplot(
                 data=df[category],
                 ax=ax,

@@ -1,6 +1,5 @@
 search_stage,characteristic,ineffective_median,ineffective_MAD,effective_median,effective_MAD
 information_distillation,page_dwell_time,19.37,13.440000000000001,45.337,35.188
-information_distillation,rank,2.0,1.0,2.0,1.0
 information_distillation,avg_content_length,998.0,323.0,995.0,403.0
 information_distillation,avg_gulpease_index,50.53763974686886,1.874001625855911,52.57395032152314,3.076957101853047
 information_distillation,avg_aoa,5.590243902439024,0.27615694591728523,5.207798742138364,0.2043701707097929

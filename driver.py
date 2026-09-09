@@ -302,12 +302,12 @@ def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, 
                 outlier_flag = 1
                 outliers = df.loc[df[category] >= 300].index
                 data_df = df.drop(outliers, axis=0)
-                ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value >= 300")
+                # ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value >= 300")
             elif category == "levenshtein_dist":
                 outlier_flag = 1
                 outliers = df.loc[df[category] > 4].index
                 data_df = df.drop(outliers, axis=0)
-                ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 4")
+                # ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 4")
             else:
                 data_df = df
         elif "results_navigation" in search_stage:
@@ -315,17 +315,17 @@ def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, 
                 outlier_flag = 1
                 outliers = df.loc[df[category] > 80].index
                 data_df = df.drop(outliers, axis=0)
-                ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 80")
+                # ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 80")
             elif category == "avg_snippet_dwell_time_before_click":
                 outlier_flag = 1
                 outliers = df.loc[df[category]>150].index
                 data_df = df.drop(outliers, axis=0)
-                ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 150")
+                # ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 150")
             elif category == "first_click_time":
                 outlier_flag = 1
                 outliers = df.loc[df[category] > 50].index
                 data_df = df.drop(outliers, axis=0)
-                ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 50")
+                # ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 50")
             else:
                 data_df = df
         elif search_stage == "information_distillation":
@@ -333,7 +333,7 @@ def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, 
                 outlier_flag = 1
                 outliers = df.loc[df[category] > 100].index
                 data_df = df.drop(outliers, axis=0)
-                ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 100")
+                # ax.set_xlabel(f"Removed outliers ({len(outliers)}) with value > 100")
             else:
                 data_df = df
                 
@@ -346,16 +346,15 @@ def get_boxplots(df, search_stage, categories, group, artefact, n_cols, n_rows, 
                     #         "markersize": "7"                 # Size of marker
                     #     }
                     )
-        ax.set_title(category, fontdict={"fontsize": 15})
-        if outlier_flag == 0:
-            ax.set_xlabel("")
+        ax.set_xlabel(category, fontdict={"fontsize": 15})
+        # if outlier_flag == 0:
+        #     ax.set_xlabel("")
 
         # xtick_map = {'0':'ineffective '+artefact, '1':'effective '+artefact}
         ax.set_xticklabels("")
-        # ax.set_xlabel("")
         ax.set_ylabel("")
         if (stats_df is not None) and (stats_df.loc[stats_df["characteristic"]==category]["significant"].values[0]==True):
-            ax.set_title(category+" *", fontdict={"fontsize": 15})
+            ax.set_xlabel(category+" *", fontdict={"fontsize": 15})
         ax.legend().remove()
 
     legend_map = {'0.0':'ineffective '+artefact, '0':'ineffective '+artefact, '1.0':'effective '+artefact, '1':'effective '+artefact}

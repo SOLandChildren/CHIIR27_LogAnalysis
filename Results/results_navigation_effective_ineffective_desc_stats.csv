@@ -4,12 +4,7 @@ results_navigation,avg_scroll_time_before_click,7.7276,3.961266666666667,3.17009
 results_navigation,avg_snippet_dwell_time_before_click,6.095225970793913,1.3447115292060872,7.192752114845939,3.6985437815126048
 results_navigation,avg_snippet_view_counts_before_click,1.1,0.10000000000000009,1.0,0.0
 results_navigation,rank_lowest_view,4.0,2.0,3.0,1.0
-results_navigation,repetitions,0.0,0.0,0.0,0.0
-results_navigation,tail,0.0,0.0,0.0,0.0
-results_navigation,SERP_total_results,10.0,0.0,10.0,0.0
-results_navigation,SERP_highest_rel_result,1.0,0.0,1.0,0.0
 results_navigation,viewed_avg_length,67.70003977461607,3.0011998581852666,64.73982169778276,5.266757249585666
 results_navigation,viewed_avg_gulpease_index,34.166666666666664,1.3333333333333357,34.565789473684205,1.422932330827063
 results_navigation,viewed_avg_conc,5.986805555555556,0.4812500000000002,6.3469444444444445,0.3247222222222219
 results_navigation,viewed_avg_aoa,5.2542,0.3063148148148147,5.165666666666667,0.25590000000000046
-results_navigation,no_view_results_ratio,0.3333333333333333,0.3333333333333333,0.4,0.4

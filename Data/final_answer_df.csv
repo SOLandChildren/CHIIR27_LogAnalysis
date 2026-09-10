@@ -1,61 +1,61 @@
-uid,topic_number,prompt,answer,timestamp,num_answer_matches,matched_keywords,answer_accuracy,effective_answer,mean_rel_time,mean_irrel_time,rel_time_total_time_ratio,num_clicks,num_unique_pages,mean_ratio_results_explored_per_serp,num_serps,avg_concreteness,avg_aoa,avg_gulpease_index,avg_content_length,mean_click_depth
-1,g3t3,Quali sono 5 animali tipici dell'India?,Rinoceronte tigre Leone stambecco cervo,56:19.2,4,"['tigre', 'rinoceronte', 'leone', 'cervo']",0.8,0,128.0225,0.0,1.0,2.0,1.0,0.1,1,6.3075,5.314086956521739,51.66681278005066,1389.0,1.0
-1,g3t2,Qual è il nome del simbolo al centro della bandiera dell'India e cosa rappresenta?,Il simbolo della bandiera rappresenta una ruota,06:18.8,1,['ruota'],0.5,0,209.602,0.0,1.0,1.0,1.0,1.0,1,6.177325581395348,5.521523809523808,43.90149974580579,1116.0,1.0
-1,g3t1,Come si chiama il fiume sacro agli indiani?,Il fiume gange,10:10.8,1,['gange'],1.0,1,36.112,0.0,1.0,1.0,1.0,0.125,1,6.622689075630253,5.207798742138364,49.49005788775799,2037.0,2.0
-2,g3t3,Quali sono 5 animali tipici dell'India?,"Tigre,leone,rinoceronte,barasingha,blackbuck.",58:07.6,5,"['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",1.0,1,313.304,0.0,1.0,1.0,1.0,0.05,2,6.3075,5.314086956521739,51.66681278005066,1389.0,1.0
-2,g3t2,Qual è il nome del simbolo al centro della bandiera dell'India e cosa rappresenta?,Ruota ,10:30.8,1,['ruota'],0.5,0,64.699,0.0,1.0,1.0,1.0,0.08333333333333333,2,6.343939393939394,5.055280898876405,50.56234312854771,867.0,3.0
-2,g3t1,Come si chiama il fiume sacro agli indiani?,Fiume gange ,15:05.5,1,['gange'],1.0,1,46.724,0.0,1.0,1.0,1.0,0.14285714285714285,1,6.622689075630253,5.207798742138364,49.49005788775799,2037.0,1.0
-3,g3t1,Come si chiama il fiume sacro agli indiani?,Gange,51:32.6,1,['gange'],1.0,1,,,,,,0.0,1,,,,,
-3,g3t3,Quali sono 5 animali tipici dell'India?,"Tigre ,Leone, rinoceronte ,Blackbuck barasingha ",00:37.6,5,"['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",1.0,1,248.875,0.0,1.0,1.0,1.0,0.1,1,6.3075,5.314086956521739,51.66681278005066,1389.0,1.0
-3,g3t2,Qual è il nome del simbolo al centro della bandiera dell'India e cosa rappresenta?,Un sole,08:53.8,0,[],0.0,0,9.903,0.0,1.0,2.0,2.0,0.2,2,5.912905214940098,5.245317460317461,46.34322435140412,798.5,3.0
-4,g3t2,Qual è il nome del simbolo al centro della bandiera dell'India e cosa rappresenta?,Ashoka. La ruota della vita buddista,13:24.5,2,"['ashoka', 'ruota']",1.0,1,49.85066666666666,60.304,0.832212972443574,7.0,5.0,0.125,4,6.378163372554561,5.350305781489816,48.74856820805458,1403.4,4.0
-4,g3t3,Quali sono 5 animali tipici dell'India?,"Tigre del bengaline
+uid,topic_number,answer,matched_keywords,num_answer_matches,answer_match_ratio
+1,g3t3,Rinoceronte tigre Leone stambecco cervo,"['tigre', 'rinoceronte', 'leone', 'cervo']",4,0.8
+1,g3t2,Il simbolo della bandiera rappresenta una ruota,['ruota'],1,0.5
+1,g3t1,Il fiume gange,['gange'],1,1.0
+2,g3t3,"Tigre,leone,rinoceronte,barasingha,blackbuck.","['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",5,1.0
+2,g3t2,Ruota ,['ruota'],1,0.5
+2,g3t1,Fiume gange ,['gange'],1,1.0
+3,g3t1,Gange,['gange'],1,1.0
+3,g3t3,"Tigre ,Leone, rinoceronte ,Blackbuck barasingha ","['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",5,1.0
+3,g3t2,Un sole,[],0,0.0
+4,g3t2,Ashoka. La ruota della vita buddista,"['ashoka', 'ruota']",2,1.0
+4,g3t3,"Tigre del bengaline
 Leone asiatico
 Rinoceronte Indiano
 Blackbuck
-Barasingha ",19:38.5,5,"['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",1.0,1,104.09799999999998,0.0,1.0,2.0,1.0,0.05263157894736842,1,6.3075,5.314086956521739,51.66681278005066,1389.0,1.0
-4,g3t1,Come si chiama il fiume sacro agli indiani?,Gange,21:00.7,1,['gange'],1.0,1,33.243,0.0,1.0,1.0,1.0,0.1,1,6.196153846153846,5.727323943661973,45.36143969888344,987.0,1.0
-5,g3t1,Come si chiama il fiume sacro agli indiani?,"Gange, il fiume sacro agli indu e la popolazione indiana",58:33.1,1,['gange'],1.0,1,,,,,,0.0,3,,,,,
-5,g3t3,Quali sono 5 animali tipici dell'India?,Natura selvaggia tra tigri e leoni terrelncognite magazine,13:16.1,0,[],0.0,0,2.255,0.0,1.0,1.0,1.0,0.05,2,5.939622641509433,5.600470588235295,44.19517386407951,1644.0,2.0
-5,g3t2,Qual è il nome del simbolo al centro della bandiera dell'India e cosa rappresenta?,Bandiera indiana significato ashoka chakra simbolo della vita ,22:57.1,1,['ashoka'],0.5,0,35.431,0.0,1.0,1.0,1.0,0.03333333333333333,3,6.343939393939394,5.055280898876405,50.56234312854771,867.0,1.0
-6,g3t1,Come si chiama il fiume sacro agli indiani?,Gange,52:28.9,1,['gange'],1.0,1,,,,,,0.0,1,,,,,
-6,g3t3,Quali sono 5 animali tipici dell'India?,Tigress del bengala Leone asiatico rinoceronte INDIANO barasingha blackbuck,00:35.0,5,"['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",1.0,1,268.752,0.0,1.0,1.0,1.0,0.05,2,6.3075,5.314086956521739,51.66681278005066,1389.0,1.0
-6,g3t2,Qual è il nome del simbolo al centro della bandiera dell'India e cosa rappresenta?,La ruota ashoka chakra,16:06.1,2,"['ashoka', 'ruota']",1.0,1,84.746,0.0,1.0,3.0,3.0,0.2333333333333333,3,6.489872802095025,5.245119028604377,50.443713768999885,1582.3333333333333,2.5
-7,g3t2,Qual è il nome del simbolo al centro della bandiera dell'India e cosa rappresenta?,E un. Sole blu,53:59.5,0,[],0.0,0,,,,,,0.0,2,,,,,
-7,g3t3,Quali sono 5 animali tipici dell'India?,Bengala Leone asiatico  rinoceronte indiano barasighna,59:45.6,2,"['rinoceronte', 'leone']",0.4,0,,,,,,0.0,1,,,,,
-7,g3t1,Come si chiama il fiume sacro agli indiani?,Gange il fiume sacro again indu e alla popolazione indiana,05:34.8,1,['gange'],1.0,1,,,,,,0.0,1,,,,,
-8,g3t3,Quali sono 5 animali tipici dell'India?,Tigre elefante pavone rinoceronte scimmie,01:54.5,4,"['tigre', 'rinoceronte', 'elefante', 'pavone']",0.8,0,129.4345,17.916,0.9665530361016628,5.0,3.0,0.10000000000000002,3,6.310707642031171,5.277454903809246,53.268819848504016,2310.0,4.5
-8,g3t2,Qual è il nome del simbolo al centro della bandiera dell'India e cosa rappresenta?,"Ruota con 24 raggi,blu nevy",14:59.1,1,['ruota'],0.5,0,103.909,0.0,1.0,1.0,1.0,0.05,2,6.755000000000001,5.115425531914894,49.26932084309133,851.0,2.0
-8,g3t1,Come si chiama il fiume sacro agli indiani?,Gange,16:38.1,1,['gange'],1.0,1,,,,,,0.0,2,,,,,
-9,g4t2,Qual è stato il primo animale nello spazio e come si chiamava?,Il primo animale  mandato nello spazio è state una cagnietta Di nome Laika ,51:05.6,1,['Laika'],0.5,0,88.5195,24.975,0.9341121162475959,5.0,4.0,0.4,1,5.9159188052638845,5.575587255679997,50.37503872826372,1001.75,6.0
-9,g4t1,Come si chiamano i satelliti maggiori di Giove?,Ganimede e Callisto ,00:07.9,2,"['ganimede', 'callisto']",0.5,0,30.37633333333333,36.17216666666667,0.2957178367222435,9.0,5.0,0.5833333333333333,2,6.109073461888707,5.399654807644237,51.03142780682868,1279.0,4.5
-9,g4t3,Quali sono i nomi di altre 3 galassie oltre la nostra?,Andromeda Triangolo Orsa Minore,20:02.4,3,"['Andromeda', 'Triangolo', 'Orsa Minore']",1.0,1,16.16257142857143,41.224999999999994,0.19967420443936162,18.0,10.0,0.55,2,,,54.791507770982946,992.8,6.5
-10,g4t3,Quali sono i nomi di altre 3 galassie oltre la nostra?,Galassia del triangolo galassia del pegaso galassia della fenice,52:22.8,3,"['Triangolo', 'Pegaso', 'Fenice']",1.0,1,234.518,35.933,0.6850901357513649,4.0,4.0,0.4,1,6.414644451530612,5.368813024733379,53.096042147766234,1749.75,10.0
-10,g4t2,Qual è stato il primo animale nello spazio e come si chiamava?,Il primo animale che è andato nello spazio  era il cane Laika,00:30.1,2,"['cane', 'Laika']",1.0,1,92.00750000000001,0.0,1.0,2.0,1.0,0.1,1,4.922727272727273,5.8125,47.89188555347093,204.0,1.0
-10,g4t1,Come si chiamano i satelliti maggiori di Giove?,Io Europa ganimede e calisto,05:41.8,3,"['io', 'europa', 'ganimede']",0.75,0,,,,,,0.0,2,,,,,
-11,g4t3,Quali sono i nomi di altre 3 galassie oltre la nostra?,"Andromeda galassia del triangolo piccola nube di magellano
-",01:40.8,3,"['Andromeda', 'Triangolo', 'Piccola Nube di Magellano']",1.0,1,96.016,45.6816,0.7160884221831092,11.0,6.0,0.175,4,6.337270120623924,5.582459569444249,53.295138809792775,1295.5,4.0
-11,g4t1,Come si chiamano i satelliti maggiori di Giove?,Callisto Europa Ganimede  Io,06:44.3,4,"['io', 'europa', 'ganimede', 'callisto']",1.0,1,0.0,253.12,0.0,1.0,1.0,0.16666666666666666,1,6.324264705882352,5.686792452830188,51.43279672468206,1321.0,1.0
-11,g4t2,Qual è stato il primo animale nello spazio e come si chiamava?,Laika,11:16.2,1,['Laika'],0.5,0,37.387,0.0,1.0,2.0,1.0,0.03333333333333333,3,4.922727272727273,5.8125,47.89188555347093,204.0,1.0
-12,g4t1,Come si chiamano i satelliti maggiori di Giove?,"Io, Ganimede, Europa, Callisto ",50:14.0,4,"['io', 'europa', 'ganimede', 'callisto']",1.0,1,300.007,76.497,0.7968228757197798,2.0,2.0,0.2,1,5.8429015837104075,5.5187808417997095,49.73346934167616,845.5,2.0
-12,g4t2,Qual è stato il primo animale nello spazio e come si chiamava?,È stato un cane di nome Laika,58:34.5,2,"['cane', 'Laika']",1.0,1,54.9428,0.0,1.0,5.0,2.0,0.2,1,5.509801136363636,5.622008258258258,48.27776183724194,834.5,2.0
-12,g4t3,Quali sono i nomi di altre 3 galassie oltre la nostra?,"Andromeda, galassia del triangolo M31, galassia sombrero M104",21:22.7,3,"['Andromeda', 'Triangolo', 'Sombrero']",1.0,1,95.26683333333334,29.6783,0.65823529682721,16.0,9.0,0.26515151515151514,3,,,54.917150813609716,1032.4444444444443,11.0
-13,g4t1,Come si chiamano i satelliti maggiori di Giove?,"Io, Europa, Ganimede e Callisto sono i 4 satelliti di Giove",57:52.5,4,"['io', 'europa', 'ganimede', 'callisto']",1.0,1,65.8225,140.79725,0.1894625191052827,6.0,2.0,0.2,1,6.151418067226891,5.638518177634606,48.58602300873844,1014.0,7.0
-13,g4t3,Quali sono i nomi di altre 3 galassie oltre la nostra?,"Le 3 galassie sono NGC3109,galassia di Andromeda galassia del triangolo ",07:37.2,3,"['Andromeda', 'Triangolo', 'NGC3109']",1.0,1,429.453,12.193,0.9723919156971874,2.0,2.0,0.1,2,6.170238095238095,5.5907307692307695,50.52737084970998,1135.5,7.0
-13,g4t2,Qual è stato il primo animale nello spazio e come si chiamava?,Laika è stata il primo animale ed  è un cane ,15:15.6,2,"['cane', 'Laika']",1.0,1,34.221666666666664,0.0,1.0,3.0,2.0,0.2,1,5.509801136363636,5.622008258258258,48.27776183724194,834.5,2.0
-14,g4t1,Come si chiamano i satelliti maggiori di Giove?,Ganimede Callisto io Europa ,49:59.3,4,"['io', 'europa', 'ganimede', 'callisto']",1.0,1,,,,,,0.0,1,,,,,
-14,g4t3,Quali sono i nomi di altre 3 galassie oltre la nostra?,Andromeda del triangolo gruppo locale,07:26.4,2,"['Andromeda', 'Triangolo']",0.6666666666666666,0,51.81666666666667,18.812,0.8051317111573801,5.0,5.0,0.125,4,5.886011925826543,5.843572543007388,50.66586666000456,1168.8,10.0
-14,g4t2,Qual è stato il primo animale nello spazio e come si chiamava?,Un cane di nome Laika,10:51.5,2,"['cane', 'Laika']",1.0,1,,,,,,0.0,3,,,,,
-15,g4t2,Qual è stato il primo animale nello spazio e come si chiamava?,Il primo animale nello spazio è un cane e si chiamava Laika.,55:02.8,2,"['cane', 'Laika']",1.0,1,57.818799999999996,0.0,1.0,5.0,1.0,0.06666666666666667,3,4.922727272727273,5.8125,47.89188555347093,204.0,1.0
-15,g4t3,Quali sono i nomi di altre 3 galassie oltre la nostra?,Galassia di Andromeda Galassie di Fireworks Galassia del Triangolo,14:01.5,2,"['Andromeda', 'Triangolo']",0.6666666666666666,0,11.734285714285715,17.867818181818183,0.2947403170593427,18.0,10.0,0.3068181818181818,4,,,54.35848371424528,1027.3,6.333333333333333
-15,g4t1,Come si chiamano i satelliti maggiori di Giove?,Io Europa Ganimede e Callisto,17:19.9,4,"['io', 'europa', 'ganimede', 'callisto']",1.0,1,0.0,81.184,0.0,1.0,1.0,0.16666666666666666,1,6.324264705882352,5.686792452830188,51.43279672468206,1321.0,1.0
-16,g4t1,Come si chiamano i satelliti maggiori di Giove?,I satelliti maggiori di Giove si chiamano lune galileiane,47:02.5,0,[],0.0,0,,,,,,0.0,3,,,,,
-16,g4t3,Quali sono i nomi di altre 3 galassie oltre la nostra?,"Andromeda, Galassia Sombrero ,Galassia del Triangolo
-",57:37.3,3,"['Andromeda', 'Triangolo', 'Sombrero']",1.0,1,229.467,10.629249999999999,0.8436783046061532,5.0,4.0,0.05263157894736842,4,6.39303144799883,4.9822585339087135,51.794204801041175,1326.75,19.0
-16,g4t2,Qual è stato il primo animale nello spazio e come si chiamava?,Il primo animali è stato un cane che si chiamava Laika,01:47.2,2,"['cane', 'Laika']",1.0,1,62.2285,0.0,1.0,2.0,2.0,0.2,1,5.377124505928855,5.510549065420561,50.72790688582536,808.0,2.0
-17,g3t3,Quali sono 5 animali tipici dell'India?,Pavone tigre 🐅 scimmia 🐵 leone cobra,55:32.7,5,"['tigre', 'leone', 'pavone', 'cobra', 'scimmia']",1.0,1,22.257,32.5955,0.2545169700850791,3.0,3.0,0.3,1,6.158683389528349,5.418828985507247,54.29648308120531,1550.6666666666667,8.0
-17,g3t2,Qual è il nome del simbolo al centro della bandiera dell'India e cosa rappresenta?,"Rapreseta la ruota dellavitabhuddista, si chiama ashoka ",22:09.5,2,"['ashoka', 'ruota']",1.0,1,152.369,90.50899999999999,0.6273478865932691,4.0,4.0,0.25396825396825395,3,6.565672201895112,4.981652089517599,53.004321273661006,864.0,3.0
-17,g3t1,Come si chiama il fiume sacro agli indiani?,Il fiume si chiama  gange,27:44.4,1,['gange'],1.0,1,75.947,0.0,1.0,1.0,1.0,0.1,1,6.84672131147541,4.909736842105263,53.79474599215266,1606.0,1.0
-18,g3t3,Quali sono 5 animali tipici dell'India?,"Tigre del bengala ,Leone asiatico ,rinoceronte Indiano ,barasingha ,Blackbuck",05:18.2,5,"['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",1.0,1,301.7395,0.0,1.0,2.0,2.0,0.21666666666666667,2,6.123561320754717,5.457278772378517,47.930993322065085,1516.5,1.5
-18,g3t2,Qual è il nome del simbolo al centro della bandiera dell'India e cosa rappresenta?,Sole,14:36.6,0,[],0.0,0,11.516,0.0,1.0,1.0,1.0,0.05,2,6.177325581395348,5.521523809523808,43.90149974580579,1116.0,6.0
-18,g3t1,Come si chiama il fiume sacro agli indiani?,Il gange u,17:10.2,1,['gange'],1.0,1,52.068,0.0,1.0,1.0,1.0,0.14285714285714285,1,6.196153846153846,5.727323943661973,45.36143969888344,987.0,1.0
+Barasingha ","['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",5,1.0
+4,g3t1,Gange,['gange'],1,1.0
+5,g3t1,"Gange, il fiume sacro agli indu e la popolazione indiana",['gange'],1,1.0
+5,g3t3,Natura selvaggia tra tigri e leoni terrelncognite magazine,[],0,0.0
+5,g3t2,Bandiera indiana significato ashoka chakra simbolo della vita ,['ashoka'],1,0.5
+6,g3t1,Gange,['gange'],1,1.0
+6,g3t3,Tigress del bengala Leone asiatico rinoceronte INDIANO barasingha blackbuck,"['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",5,1.0
+6,g3t2,La ruota ashoka chakra,"['ashoka', 'ruota']",2,1.0
+7,g3t2,E un. Sole blu,[],0,0.0
+7,g3t3,Bengala Leone asiatico  rinoceronte indiano barasighna,"['rinoceronte', 'leone']",2,0.4
+7,g3t1,Gange il fiume sacro again indu e alla popolazione indiana,['gange'],1,1.0
+8,g3t3,Tigre elefante pavone rinoceronte scimmie,"['tigre', 'rinoceronte', 'elefante', 'pavone']",4,0.8
+8,g3t2,"Ruota con 24 raggi,blu nevy",['ruota'],1,0.5
+8,g3t1,Gange,['gange'],1,1.0
+9,g4t2,Il primo animale  mandato nello spazio è state una cagnietta Di nome Laika ,['Laika'],1,0.5
+9,g4t1,Ganimede e Callisto ,"['ganimede', 'callisto']",2,0.5
+9,g4t3,Andromeda Triangolo Orsa Minore,"['Andromeda', 'Triangolo', 'Orsa Minore']",3,1.0
+10,g4t3,Galassia del triangolo galassia del pegaso galassia della fenice,"['Triangolo', 'Pegaso', 'Fenice']",3,1.0
+10,g4t2,Il primo animale che è andato nello spazio  era il cane Laika,"['cane', 'Laika']",2,1.0
+10,g4t1,Io Europa ganimede e calisto,"['io', 'europa', 'ganimede']",3,0.75
+11,g4t3,"Andromeda galassia del triangolo piccola nube di magellano
+","['Andromeda', 'Triangolo', 'Piccola Nube di Magellano']",3,1.0
+11,g4t1,Callisto Europa Ganimede  Io,"['io', 'europa', 'ganimede', 'callisto']",4,1.0
+11,g4t2,Laika,['Laika'],1,0.5
+12,g4t1,"Io, Ganimede, Europa, Callisto ","['io', 'europa', 'ganimede', 'callisto']",4,1.0
+12,g4t2,È stato un cane di nome Laika,"['cane', 'Laika']",2,1.0
+12,g4t3,"Andromeda, galassia del triangolo M31, galassia sombrero M104","['Andromeda', 'Triangolo', 'Sombrero']",3,1.0
+13,g4t1,"Io, Europa, Ganimede e Callisto sono i 4 satelliti di Giove","['io', 'europa', 'ganimede', 'callisto']",4,1.0
+13,g4t3,"Le 3 galassie sono NGC3109,galassia di Andromeda galassia del triangolo ","['Andromeda', 'Triangolo', 'NGC3109']",3,1.0
+13,g4t2,Laika è stata il primo animale ed  è un cane ,"['cane', 'Laika']",2,1.0
+14,g4t1,Ganimede Callisto io Europa ,"['io', 'europa', 'ganimede', 'callisto']",4,1.0
+14,g4t3,Andromeda del triangolo gruppo locale,"['Andromeda', 'Triangolo']",2,0.67
+14,g4t2,Un cane di nome Laika,"['cane', 'Laika']",2,1.0
+15,g4t2,Il primo animale nello spazio è un cane e si chiamava Laika.,"['cane', 'Laika']",2,1.0
+15,g4t3,Galassia di Andromeda Galassie di Fireworks Galassia del Triangolo,"['Andromeda', 'Triangolo']",2,0.67
+15,g4t1,Io Europa Ganimede e Callisto,"['io', 'europa', 'ganimede', 'callisto']",4,1.0
+16,g4t1,I satelliti maggiori di Giove si chiamano lune galileiane,[],0,0.0
+16,g4t3,"Andromeda, Galassia Sombrero ,Galassia del Triangolo
+","['Andromeda', 'Triangolo', 'Sombrero']",3,1.0
+16,g4t2,Il primo animali è stato un cane che si chiamava Laika,"['cane', 'Laika']",2,1.0
+17,g3t3,Pavone tigre 🐅 scimmia 🐵 leone cobra,"['tigre', 'leone', 'pavone', 'cobra', 'scimmia']",5,1.0
+17,g3t2,"Rapreseta la ruota dellavitabhuddista, si chiama ashoka ","['ashoka', 'ruota']",2,1.0
+17,g3t1,Il fiume si chiama  gange,['gange'],1,1.0
+18,g3t3,"Tigre del bengala ,Leone asiatico ,rinoceronte Indiano ,barasingha ,Blackbuck","['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",5,1.0
+18,g3t2,Sole,[],0,0.0
+18,g3t1,Il gange u,['gange'],1,1.0

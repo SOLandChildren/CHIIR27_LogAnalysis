@@ -1,0 +1,61 @@
+uid,topic_number,answer,matched_keywords,num_answer_matches,answer_match_ratio
+1,g3t3,Rinoceronte tigre Leone stambecco cervo,"['tigre', 'rinoceronte', 'leone', 'cervo']",4,0.8
+1,g3t2,Il simbolo della bandiera rappresenta una ruota,['ruota'],1,0.5
+1,g3t1,Il fiume gange,['gange'],1,1.0
+2,g3t3,"Tigre,leone,rinoceronte,barasingha,blackbuck.","['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",5,1.0
+2,g3t2,Ruota ,['ruota'],1,0.5
+2,g3t1,Fiume gange ,['gange'],1,1.0
+3,g3t1,Gange,['gange'],1,1.0
+3,g3t3,"Tigre ,Leone, rinoceronte ,Blackbuck barasingha ","['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",5,1.0
+3,g3t2,Un sole,[],0,0.0
+4,g3t2,Ashoka. La ruota della vita buddista,"['ashoka', 'ruota']",2,1.0
+4,g3t3,"Tigre del bengaline
+Leone asiatico
+Rinoceronte Indiano
+Blackbuck
+Barasingha ","['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",5,1.0
+4,g3t1,Gange,['gange'],1,1.0
+5,g3t1,"Gange, il fiume sacro agli indu e la popolazione indiana",['gange'],1,1.0
+5,g3t3,Natura selvaggia tra tigri e leoni terrelncognite magazine,[],0,0.0
+5,g3t2,Bandiera indiana significato ashoka chakra simbolo della vita ,['ashoka'],1,0.5
+6,g3t1,Gange,['gange'],1,1.0
+6,g3t3,Tigress del bengala Leone asiatico rinoceronte INDIANO barasingha blackbuck,"['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",5,1.0
+6,g3t2,La ruota ashoka chakra,"['ashoka', 'ruota']",2,1.0
+7,g3t2,E un. Sole blu,[],0,0.0
+7,g3t3,Bengala Leone asiatico  rinoceronte indiano barasighna,"['rinoceronte', 'leone']",2,0.4
+7,g3t1,Gange il fiume sacro again indu e alla popolazione indiana,['gange'],1,1.0
+8,g3t3,Tigre elefante pavone rinoceronte scimmie,"['tigre', 'rinoceronte', 'elefante', 'pavone']",4,0.8
+8,g3t2,"Ruota con 24 raggi,blu nevy",['ruota'],1,0.5
+8,g3t1,Gange,['gange'],1,1.0
+9,g4t2,Il primo animale  mandato nello spazio è state una cagnietta Di nome Laika ,['Laika'],1,0.5
+9,g4t1,Ganimede e Callisto ,"['ganimede', 'callisto']",2,0.5
+9,g4t3,Andromeda Triangolo Orsa Minore,"['Andromeda', 'Triangolo', 'Orsa Minore']",3,1.0
+10,g4t3,Galassia del triangolo galassia del pegaso galassia della fenice,"['Triangolo', 'Pegaso', 'Fenice']",3,1.0
+10,g4t2,Il primo animale che è andato nello spazio  era il cane Laika,"['cane', 'Laika']",2,1.0
+10,g4t1,Io Europa ganimede e calisto,"['io', 'europa', 'ganimede']",3,0.75
+11,g4t3,"Andromeda galassia del triangolo piccola nube di magellano
+","['Andromeda', 'Triangolo', 'Piccola Nube di Magellano']",3,1.0
+11,g4t1,Callisto Europa Ganimede  Io,"['io', 'europa', 'ganimede', 'callisto']",4,1.0
+11,g4t2,Laika,['Laika'],1,0.5
+12,g4t1,"Io, Ganimede, Europa, Callisto ","['io', 'europa', 'ganimede', 'callisto']",4,1.0
+12,g4t2,È stato un cane di nome Laika,"['cane', 'Laika']",2,1.0
+12,g4t3,"Andromeda, galassia del triangolo M31, galassia sombrero M104","['Andromeda', 'Triangolo', 'Sombrero']",3,1.0
+13,g4t1,"Io, Europa, Ganimede e Callisto sono i 4 satelliti di Giove","['io', 'europa', 'ganimede', 'callisto']",4,1.0
+13,g4t3,"Le 3 galassie sono NGC3109,galassia di Andromeda galassia del triangolo ","['Andromeda', 'Triangolo', 'NGC3109']",3,1.0
+13,g4t2,Laika è stata il primo animale ed  è un cane ,"['cane', 'Laika']",2,1.0
+14,g4t1,Ganimede Callisto io Europa ,"['io', 'europa', 'ganimede', 'callisto']",4,1.0
+14,g4t3,Andromeda del triangolo gruppo locale,"['Andromeda', 'Triangolo']",2,0.67
+14,g4t2,Un cane di nome Laika,"['cane', 'Laika']",2,1.0
+15,g4t2,Il primo animale nello spazio è un cane e si chiamava Laika.,"['cane', 'Laika']",2,1.0
+15,g4t3,Galassia di Andromeda Galassie di Fireworks Galassia del Triangolo,"['Andromeda', 'Triangolo']",2,0.67
+15,g4t1,Io Europa Ganimede e Callisto,"['io', 'europa', 'ganimede', 'callisto']",4,1.0
+16,g4t1,I satelliti maggiori di Giove si chiamano lune galileiane,[],0,0.0
+16,g4t3,"Andromeda, Galassia Sombrero ,Galassia del Triangolo
+","['Andromeda', 'Triangolo', 'Sombrero']",3,1.0
+16,g4t2,Il primo animali è stato un cane che si chiamava Laika,"['cane', 'Laika']",2,1.0
+17,g3t3,Pavone tigre 🐅 scimmia 🐵 leone cobra,"['tigre', 'leone', 'pavone', 'cobra', 'scimmia']",5,1.0
+17,g3t2,"Rapreseta la ruota dellavitabhuddista, si chiama ashoka ","['ashoka', 'ruota']",2,1.0
+17,g3t1,Il fiume si chiama  gange,['gange'],1,1.0
+18,g3t3,"Tigre del bengala ,Leone asiatico ,rinoceronte Indiano ,barasingha ,Blackbuck","['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",5,1.0
+18,g3t2,Sole,[],0,0.0
+18,g3t1,Il gange u,['gange'],1,1.0

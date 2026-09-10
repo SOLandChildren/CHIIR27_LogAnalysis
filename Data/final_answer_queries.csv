@@ -1,0 +1,61 @@
+uid,topic_number,answer,matched_keywords,num_answer_matches,answer_match_ratio,num_queries,num_unique_queries,query_lex_density,query_aoa,query_gulpease_index,query_num_typos,query_lev_dist,query_len,query_num_concepts,query_conc,query_stop_words_ratio,query_p10
+1,g3t3,Rinoceronte tigre Leone stambecco cervo,"['tigre', 'rinoceronte', 'leone', 'cervo']",4,0.8,1,1,0.5,,79.0,0.0,0.0,8.0,3.0,,0.375,0.2
+1,g3t2,Il simbolo della bandiera rappresenta una ruota,['ruota'],1,0.5,1,1,0.5454545454545454,5.12,69.9090909090909,1.0,1.0,11.0,6.0,5.3,0.5454545454545454,0.1
+1,g3t1,Il fiume gange,['gange'],1,1.0,1,1,0.75,4.8,109.0,0.0,0.0,4.0,2.0,7.5,0.25,0.4
+2,g3t3,"Tigre,leone,rinoceronte,barasingha,blackbuck.","['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",5,1.0,2,2,0.5,,89.14285714285714,0.0,0.0,7.0,3.0,,0.4375,0.44999999999999996
+2,g3t2,Ruota ,['ruota'],1,0.5,2,2,0.4722222222222222,5.066666666666666,64.0,1.5,1.5,15.0,6.5,6.574999999999999,0.5,0.4
+2,g3t1,Fiume gange ,['gange'],1,1.0,1,1,0.625,4.8,82.75,0.0,0.0,8.0,2.0,7.5,0.5,0.4
+3,g3t1,Gange,['gange'],1,1.0,1,1,0.625,4.8,82.75,0.0,0.0,8.0,2.0,7.5,0.5,0.4
+3,g3t3,"Tigre ,Leone, rinoceronte ,Blackbuck barasingha ","['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",5,1.0,1,1,0.5714285714285714,,84.0,0.0,0.0,7.0,3.0,,0.4285714285714285,0.2
+3,g3t2,Un sole,[],0,0.0,2,2,0.5634920634920635,4.683333333333334,68.05982905982906,1.0,1.5,11.5,5.0,6.574999999999999,0.5079365079365079,0.4
+4,g3t2,Ashoka. La ruota della vita buddista,"['ashoka', 'ruota']",2,1.0,4,2,0.44999999999999996,6.6,80.875,1.0,1.5,7.5,3.5,,0.55,0.3
+4,g3t3,"Tigre del bengaline
+Leone asiatico
+Rinoceronte Indiano
+Blackbuck
+Barasingha ","['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",5,1.0,1,1,0.6,,104.0,0.0,0.0,5.0,2.0,,0.2,0.2
+4,g3t1,Gange,['gange'],1,1.0,1,1,1.0,4.8,132.33333333333331,0.0,0.0,3.0,1.0,7.5,0.0,0.8
+5,g3t1,"Gange, il fiume sacro agli indu e la popolazione indiana",['gange'],1,1.0,5,3,0.62,4.8,85.9,0.8,1.2,7.4,1.8,7.5,0.52,0.24000000000000005
+5,g3t3,Natura selvaggia tra tigri e leoni terrelncognite magazine,[],0,0.0,5,2,0.6571428571428571,,86.99999999999997,0.6,0.6,7.0,2.4,,0.3428571428571428,0.08
+5,g3t2,Bandiera indiana significato ashoka chakra simbolo della vita ,['ashoka'],1,0.5,4,3,0.6666666666666666,5.506666666666667,162.33333333333334,0.75,0.75,4.0,0.75,7.849999999999999,0.24999999999999997,0.275
+6,g3t1,Gange,['gange'],1,1.0,1,1,0.625,4.8,81.5,0.0,0.0,8.0,2.0,7.5,0.5,0.4
+6,g3t3,Tigress del bengala Leone asiatico rinoceronte INDIANO barasingha blackbuck,"['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",5,1.0,2,2,0.5357142857142857,,84.35714285714286,1.0,1.0,7.5,2.5,,0.33928571428571425,0.15000000000000002
+6,g3t2,La ruota ashoka chakra,"['ashoka', 'ruota']",2,1.0,3,3,0.641025641025641,6.053333333333332,80.94444444444446,0.6666666666666666,0.6666666666666666,9.666666666666666,4.666666666666667,7.85,0.4102564102564103,0.43333333333333335
+7,g3t2,E un. Sole blu,[],0,0.0,2,1,0.4285714285714285,6.6,80.66666666666667,3.0,6.0,7.0,3.0,,0.5714285714285714,0.8
+7,g3t3,Bengala Leone asiatico  rinoceronte indiano barasighna,"['rinoceronte', 'leone']",2,0.4,1,1,0.5,,79.0,0.0,0.0,8.0,3.0,,0.375,0.2
+7,g3t1,Gange il fiume sacro again indu e alla popolazione indiana,['gange'],1,1.0,1,1,0.5555555555555556,4.8,82.75,2.0,1.0,9.0,2.0,7.5,0.4444444444444444,0.4
+8,g3t3,Tigre elefante pavone rinoceronte scimmie,"['tigre', 'rinoceronte', 'elefante', 'pavone']",4,0.8,3,2,0.4444444444444444,,115.66666666666667,0.0,0.0,5.0,2.3333333333333335,,0.5555555555555555,0.39999999999999997
+8,g3t2,"Ruota con 24 raggi,blu nevy",['ruota'],1,0.5,6,5,0.6907993966817495,4.783333333333334,80.50326797385621,0.3333333333333333,0.3333333333333333,10.5,4.0,6.83,0.36726998491704377,0.2833333333333334
+8,g3t1,Gange,['gange'],1,1.0,2,1,1.0,4.8,139.0,0.0,0.0,3.0,2.0,7.5,0.0,0.8
+9,g4t2,Il primo animale  mandato nello spazio è state una cagnietta Di nome Laika ,['Laika'],1,0.5,1,1,0.4545454545454545,4.5,74.45454545454547,0.0,0.0,11.0,3.0,4.75,0.7272727272727273,0.4
+9,g4t1,Ganimede e Callisto ,"['ganimede', 'callisto']",2,0.5,2,2,0.625,,77.75,0.5,1.0,8.0,2.0,,0.375,0.3
+9,g4t3,Andromeda Triangolo Orsa Minore,"['Andromeda', 'Triangolo', 'Orsa Minore']",3,1.0,3,3,0.298989898989899,,111.20202020202021,0.3333333333333333,0.3333333333333333,6.333333333333333,2.0,,0.38181818181818183,0.19999999999999998
+10,g4t3,Galassia del triangolo galassia del pegaso galassia della fenice,"['Triangolo', 'Pegaso', 'Fenice']",3,1.0,1,1,0.3636363636363636,,77.18181818181819,0.0,0.0,11.0,3.0,,0.5454545454545454,0.1
+10,g4t2,Il primo animale che è andato nello spazio  era il cane Laika,"['cane', 'Laika']",2,1.0,1,1,0.5,4.5,69.9090909090909,1.0,1.0,12.0,3.0,4.75,0.6666666666666666,0.3
+10,g4t1,Io Europa ganimede e calisto,"['io', 'europa', 'ganimede']",3,0.75,2,1,0.4444444444444444,,77.75,1.0,1.0,9.0,2.0,,0.3333333333333333,0.3
+11,g4t3,"Andromeda galassia del triangolo piccola nube di magellano
+","['Andromeda', 'Triangolo', 'Piccola Nube di Magellano']",3,1.0,4,4,0.43257575757575756,,113.52651515151516,0.25,0.25,5.75,2.5,,0.33219696969696966,0.325
+11,g4t1,Callisto Europa Ganimede  Io,"['io', 'europa', 'ganimede', 'callisto']",4,1.0,1,1,0.625,,76.5,0.0,0.0,8.0,2.0,,0.375,0.3
+11,g4t2,Laika,['Laika'],1,0.5,3,2,0.6666666666666666,4.36,107.33333333333333,0.3333333333333333,1.0,8.666666666666666,2.6666666666666665,4.75,0.4444444444444444,0.19999999999999998
+12,g4t1,"Io, Ganimede, Europa, Callisto ","['io', 'europa', 'ganimede', 'callisto']",4,1.0,1,1,0.5714285714285714,,87.57142857142856,0.0,0.0,7.0,2.0,,0.4285714285714285,0.6
+12,g4t2,È stato un cane di nome Laika,"['cane', 'Laika']",2,1.0,1,1,0.5,4.5,72.33333333333333,0.0,0.0,12.0,3.0,4.75,0.6666666666666666,0.3
+12,g4t3,"Andromeda, galassia del triangolo M31, galassia sombrero M104","['Andromeda', 'Triangolo', 'Sombrero']",3,1.0,5,4,0.31272727272727274,,98.45454545454545,0.0,0.0,6.2,2.0,,0.509090909090909,0.22000000000000003
+13,g4t1,"Io, Europa, Ganimede e Callisto sono i 4 satelliti di Giove","['io', 'europa', 'ganimede', 'callisto']",4,1.0,1,1,0.5714285714285714,,87.57142857142856,0.0,0.0,7.0,2.0,,0.4285714285714285,0.6
+13,g4t3,"Le 3 galassie sono NGC3109,galassia di Andromeda galassia del triangolo ","['Andromeda', 'Triangolo', 'NGC3109']",3,1.0,2,2,0.5151515151515151,,100.96969696969698,0.0,0.0,7.0,2.5,,0.2727272727272727,0.2
+13,g4t2,Laika è stata il primo animale ed  è un cane ,"['cane', 'Laika']",2,1.0,1,1,0.5,4.5,71.5,0.0,0.0,12.0,3.0,4.75,0.6666666666666666,0.3
+14,g4t1,Ganimede Callisto io Europa ,"['io', 'europa', 'ganimede', 'callisto']",4,1.0,1,1,0.5714285714285714,,87.57142857142856,0.0,0.0,7.0,2.0,,0.4285714285714285,0.6
+14,g4t3,Andromeda del triangolo gruppo locale,"['Andromeda', 'Triangolo']",2,0.67,4,4,0.4738636363636364,,91.10227272727272,0.0,0.0,7.0,2.75,,0.6755681818181818,0.22499999999999998
+14,g4t2,Un cane di nome Laika,"['cane', 'Laika']",2,1.0,3,3,0.5707070707070706,3.87,105.26262626262627,0.3333333333333333,0.3333333333333333,7.333333333333333,1.0,4.75,0.7146464646464645,0.2333333333333333
+15,g4t2,Il primo animale nello spazio è un cane e si chiamava Laika.,"['cane', 'Laika']",2,1.0,3,1,0.5,4.5,72.33333333333333,0.0,0.0,12.0,3.0,4.75,0.6666666666666666,0.3
+15,g4t3,Galassia di Andromeda Galassie di Fireworks Galassia del Triangolo,"['Andromeda', 'Triangolo']",2,0.67,6,5,0.5984848484848485,,107.52272727272727,0.16666666666666666,0.3333333333333333,7.166666666666667,2.6666666666666665,,0.356060606060606,0.11666666666666668
+15,g4t1,Io Europa Ganimede e Callisto,"['io', 'europa', 'ganimede', 'callisto']",4,1.0,1,1,0.625,,77.75,0.0,0.0,8.0,2.0,,0.375,0.3
+16,g4t1,I satelliti maggiori di Giove si chiamano lune galileiane,[],0,0.0,3,2,0.5132275132275131,,84.27777777777777,1.0,1.0,8.333333333333334,1.6666666666666667,,0.31746031746031744,0.3666666666666667
+16,g4t3,"Andromeda, Galassia Sombrero ,Galassia del Triangolo
+","['Andromeda', 'Triangolo', 'Sombrero']",3,1.0,4,2,0.3409090909090909,,76.0909090909091,0.25,0.25,11.0,3.0,,0.6818181818181818,0.1
+16,g4t2,Il primo animali è stato un cane che si chiamava Laika,"['cane', 'Laika']",2,1.0,1,1,0.6,4.5,76.0,0.0,0.0,10.0,2.0,,0.8,0.5
+17,g3t3,Pavone tigre 🐅 scimmia 🐵 leone cobra,"['tigre', 'leone', 'pavone', 'cobra', 'scimmia']",5,1.0,1,1,0.5,,86.5,0.0,0.0,8.0,3.0,,0.375,0.5
+17,g3t2,"Rapreseta la ruota dellavitabhuddista, si chiama ashoka ","['ashoka', 'ruota']",2,1.0,3,3,0.38425925925925924,5.233333333333333,84.0,0.3333333333333333,0.3333333333333333,7.666666666666667,3.6666666666666665,7.849999999999999,0.5231481481481481,0.26666666666666666
+17,g3t1,Il fiume si chiama  gange,['gange'],1,1.0,1,1,0.6,4.22,111.0,0.0,0.0,5.0,2.0,6.4,0.4,0.5
+18,g3t3,"Tigre del bengala ,Leone asiatico ,rinoceronte Indiano ,barasingha ,Blackbuck","['tigre', 'rinoceronte', 'leone', 'barasingha', 'blackbuck']",5,1.0,2,2,0.404040404040404,,79.0,0.5,0.5,10.0,3.0,,0.303030303030303,0.15000000000000002
+18,g3t2,Sole,[],0,0.0,2,2,0.5727272727272728,5.423333333333333,79.45454545454545,0.5,0.5,8.0,4.0,7.2124999999999995,0.4727272727272727,0.65
+18,g3t1,Il gange u,['gange'],1,1.0,1,1,0.625,4.8,81.5,0.0,0.0,8.0,2.0,7.5,0.5,0.4

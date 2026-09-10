@@ -157,13 +157,17 @@ def get_final_answers(log_entries):
     final_answer = []
     topics = pd.read_csv("Data/topics.csv")
     for entry in log_entries:
-        if entry["type"] == "TaskEnded":
+        if entry["type"] == "TaskStarted":
+            topic_num = assign_topic_number(entry["uid"], entry["actual_topic_number"])
+            topic = topics.loc[topics["tid"]==topic_num]["question"].values[0]
+            final_answer.append([entry["uid"], topic_num, topic, None, "TaskStart", entry["timestamp"]])
+        elif entry["type"] == "TaskEnded":
             # print(entry["uid"])
             topic_num = assign_topic_number(entry["uid"], entry["actual_topic_number"])
             topic = topics.loc[topics["tid"]==topic_num]["question"].values[0]
-            final_answer.append([entry["uid"], topic_num, topic, entry["answer"], entry["timestamp"]])
+            final_answer.append([entry["uid"], topic_num, topic, entry["answer"], "TaskEnd", entry["timestamp"]])
 
-    final_answer_df = pd.DataFrame(final_answer, columns = ["uid", "topic_number", "prompt", "answer", "timestamp"])
+    final_answer_df = pd.DataFrame(final_answer, columns = ["uid", "topic_number", "prompt", "answer", "TaskStartOrEnd", "timestamp"])
     final_answer_df["uid"] = final_answer_df["uid"].astype("Int64")
     final_answer_df["timestamp"] = pd.to_datetime(final_answer_df["timestamp"])
     final_answer_df = final_answer_df.drop_duplicates(ignore_index=True)
@@ -483,7 +487,7 @@ def get_descriptive_stats(df, search_stage, categories, ncols, nrows, binwidth_m
     desc_stats_df.to_csv(f"Results/desc_stats_{search_stage}.csv", index=False, encoding="utf8")
     return desc_stats_df
 
-def get_radar_plot(df, search_stage, categories, artefact, group, normalized=True, stats_df=None):
+def get_radar_plot(df, search_stage, categories, artefact, group, normalized=True):
 
     scaled_df = df[categories].apply(zscore, nan_policy='omit')
     scaled_df[group] = df[group]
@@ -507,20 +511,21 @@ def get_radar_plot(df, search_stage, categories, artefact, group, normalized=Tru
         ax.set_yticklabels([])
     ax.set_xticks(angles[:-1])
 
-    category_names = []
-    for category in categories:
-        if (stats_df is not None) and (stats_df.loc[stats_df["feature"]==category]["significant"].values[0]==True):
-            category_names.append(category+" *")
-        else:
-            category_names.append(category)
-    ax.set_xticklabels(category_names)
+    # category_names = []
+    # for category in categories:
+    #     if (stats_df is not None) and (stats_df.loc[stats_df["feature"]==category]["significant"].values[0]==True):
+    #         category_names.append(category+" *")
+    #     else:
+    #         category_names.append(category)
+    # ax.set_xticklabels(category_names)
+    ax.set_xticklabels(categories)
 
-    legend_map = {'$0$':'ineffective '+artefact, '$1$':'effective '+artefact}
+    legend_map = {'$0$':'failed '+artefact, '$1$':'partially successsful '+artefact, '$2$': 'successful '+artefact}
 
     handles, labels = ax.get_legend_handles_labels()
     # print(labels)
-    ax.legend(handles, [legend_map[l] for l in labels], loc='upper right', bbox_to_anchor=(1.1, 1.1))
-    plt.savefig("Figures/"+search_stage+"_radar.pdf", dpi=300, bbox_inches='tight')
+    ax.legend(handles, [legend_map[l] for l in labels], loc='upper right', bbox_to_anchor=(1.5, 1.1))
+    # plt.savefig("Figures/"+search_stage+"_radar.pdf", dpi=300, bbox_inches='tight')
     # plt.title(f"Scaled using {scaling}", y=1.05, fontsize=14)
 
     plt.show()

@@ -380,7 +380,7 @@ def get_descriptive_stats(df, search_stage, categories, ncols, nrows, binwidth_m
     for i, category in enumerate(categories): 
         ax = plt.subplot(nrows, ncols, i+1) #nrows, ncols, index
     # for category in categories:
-        if category in ["num_concepts", "levenshtein_dist", "num_typos", "query_len", "rank_lowest_view", "SERP_total_results", "SERP_highest_rel_result", "tail", "repetitions", "avg_snippet_view_counts_before_click", "total_clicks", "rank"]:
+        if category in ["num_concepts", "levenshtein_dist", "num_typos", "query_len", "rank_lowest_view", "SERP_total_results", "SERP_highest_rel_result", "tail", "repetitions", "avg_snippet_view_counts_before_click", "total_clicks", "rank", "page_rank"]:
             sns.histplot(
                 data=df[category],
                 ax=ax,

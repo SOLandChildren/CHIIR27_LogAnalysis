@@ -1,7 +1,7 @@
 search_stage,characteristic,test_statistic,pval,significant
 results_navigation,total_clicks,-1.0,0.0602,False
 results_navigation,repetitions,0.0,1.0,False
-results_navigation,first_click_time,10.8975,0.03,True
+results_navigation,first_click_time,11.778000000000002,0.0258,True
 results_navigation,avg_scroll_time_before_click,4.5575,0.212,False
 results_navigation,avg_snippet_dwell_time_before_click,-1.8233974463118585,0.3374,False
 results_navigation,avg_snippet_view_counts_before_click,0.10000000000000009,0.175,False

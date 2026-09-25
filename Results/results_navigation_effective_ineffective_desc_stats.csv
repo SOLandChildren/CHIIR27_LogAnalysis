@@ -1,7 +1,7 @@
 search_stage,characteristic,ineffective_median,ineffective_MAD,effective_median,effective_MAD
 results_navigation,total_clicks,0.0,0.0,1.0,0.0
 results_navigation,repetitions,0.0,0.0,0.0,0.0
-results_navigation,first_click_time,23.684,11.929999999999996,12.7865,6.8614999999999995
+results_navigation,first_click_time,22.658,11.920000000000002,10.879999999999999,7.111
 results_navigation,avg_scroll_time_before_click,7.7276,3.961266666666667,3.1700999999999997,3.1675999999999997
 results_navigation,avg_snippet_dwell_time_before_click,6.613229166666667,1.4914247414622421,8.436626612978525,4.488428696311859
 results_navigation,avg_snippet_view_counts_before_click,1.1,0.10000000000000009,1.0,0.0

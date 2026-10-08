@@ -122,7 +122,6 @@ uid,topic_number,action_name,action_code,timestamp
 3,g3t2,resultExposureStarted,NR_RV,2026-05-19 15:08:22.576
 3,g3t2,OpenedAnswerBox,AW,2026-05-19 15:08:25.126
 3,g3t2,TaskEnded,TE,2026-05-19 15:08:53.840
-3,g3t3,TaskStarted,TS,2026-05-19 14:51:43.383
 3,g3t3,TaskStarted,TS,2026-05-19 14:51:43.431
 3,g3t3,querySubmitted,QS,2026-05-19 14:53:41.858
 3,g3t3,searchResultGenerated,SG,2026-05-19 14:53:43.288

@@ -488,10 +488,6 @@ def get_descriptive_stats(df, search_stage, categories, ncols, nrows, binwidth_m
     return desc_stats_df
 
 def get_radar_plot(df, search_stage, categories, artefact, group, normalized=True):
-
-    scaled_df = df[categories].apply(zscore, nan_policy='omit')
-    scaled_df[group] = df[group]
-    cluster_means = scaled_df.groupby(group).mean()
     # cluster_means = cluster_means.apply(zscore)
     # print(cluster_means)
 
@@ -499,33 +495,40 @@ def get_radar_plot(df, search_stage, categories, artefact, group, normalized=Tru
     angles = np.linspace(0, 2*np.pi, N, endpoint=False).tolist()
     angles += angles[:1]  
 
-    fig, ax = plt.subplots(figsize=(7,7), subplot_kw=dict(polar=True))
+    for i, task in enumerate(["t1", "t2", "t3"]):
 
-    for i, row in cluster_means.iterrows():
-        values = row.tolist()
-        values += values[:1]
-        ax.plot(angles, values, label=f'${i}$', linewidth=2)
-        ax.fill(angles, values, alpha=0.1)
+        task_df = df.loc[(df["topic_number"]=="g3"+task)|(df["topic_number"]=="g4"+task)]
+        scaled_df = df[categories].apply(zscore, nan_policy='omit')
+        scaled_df[group] = df[group]
+        cluster_means = scaled_df.groupby(group).mean()
 
-    if normalized:
-        ax.set_yticklabels([])
-    ax.set_xticks(angles[:-1])
+        fig, ax = plt.subplot(1, 3, i, figsize=(7,7), subplot_kw=dict(polar=True))
 
-    # category_names = []
-    # for category in categories:
-    #     if (stats_df is not None) and (stats_df.loc[stats_df["feature"]==category]["significant"].values[0]==True):
-    #         category_names.append(category+" *")
-    #     else:
-    #         category_names.append(category)
-    # ax.set_xticklabels(category_names)
-    ax.set_xticklabels(categories)
+        for i, row in cluster_means.iterrows():
+            values = row.tolist()
+            values += values[:1]
+            ax.plot(angles, values, label=f'${i}$', linewidth=2)
+            ax.fill(angles, values, alpha=0.1)
 
-    legend_map = {'$0$':'failed '+artefact, '$1$':'partially successsful '+artefact, '$2$': 'successful '+artefact}
+        if normalized:
+            ax.set_yticklabels([])
+        ax.set_xticks(angles[:-1])
 
-    handles, labels = ax.get_legend_handles_labels()
-    # print(labels)
-    ax.legend(handles, [legend_map[l] for l in labels], loc='upper right', bbox_to_anchor=(1.5, 1.1))
-    # plt.savefig("Figures/"+search_stage+"_radar.pdf", dpi=300, bbox_inches='tight')
-    # plt.title(f"Scaled using {scaling}", y=1.05, fontsize=14)
+        # category_names = []
+        # for category in categories:
+        #     if (stats_df is not None) and (stats_df.loc[stats_df["feature"]==category]["significant"].values[0]==True):
+        #         category_names.append(category+" *")
+        #     else:
+        #         category_names.append(category)
+        # ax.set_xticklabels(category_names)
+        ax.set_xticklabels(categories)
+
+        legend_map = {'$0$':'failed '+artefact, '$1$':'successsful '+artefact}
+
+        # handles, labels = ax.get_legend_handles_labels()
+        # print(labels)
+        # ax.legend(handles, [legend_map[l] for l in labels], loc='upper right', bbox_to_anchor=(1.5, 1.1))
+        # plt.savefig("Figures/"+search_stage+"_radar.pdf", dpi=300, bbox_inches='tight')
+        # plt.title(f"Scaled using {scaling}", y=1.05, fontsize=14)
 
     plt.show()

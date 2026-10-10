@@ -495,24 +495,24 @@ def get_radar_plot(df, search_stage, categories, artefact, group, normalized=Tru
     angles = np.linspace(0, 2*np.pi, N, endpoint=False).tolist()
     angles += angles[:1]  
 
-    for i, task in enumerate(["t1", "t2", "t3"]):
+    # for i, task in enumerate(["t1", "t2", "t3"]):
 
-        task_df = df.loc[(df["topic_number"]=="g3"+task)|(df["topic_number"]=="g4"+task)]
-        scaled_df = df[categories].apply(zscore, nan_policy='omit')
-        scaled_df[group] = df[group]
-        cluster_means = scaled_df.groupby(group).mean()
+        # task_df = df.loc[(df["topic_number"]=="g3"+task)|(df["topic_number"]=="g4"+task)]
+    scaled_df = df[categories].apply(zscore, nan_policy='omit')
+    scaled_df[group] = df[group]
+    cluster_means = scaled_df.groupby(group).mean()
 
-        fig, ax = plt.subplot(1, 3, i, figsize=(7,7), subplot_kw=dict(polar=True))
+    fig, ax = plt.subplots(figsize=(7,7), subplot_kw=dict(polar=True))
 
-        for i, row in cluster_means.iterrows():
-            values = row.tolist()
-            values += values[:1]
-            ax.plot(angles, values, label=f'${i}$', linewidth=2)
-            ax.fill(angles, values, alpha=0.1)
+    for i, row in cluster_means.iterrows():
+        values = row.tolist()
+        values += values[:1]
+        ax.plot(angles, values, label=f'${i}$', linewidth=2)
+        ax.fill(angles, values, alpha=0.1)
 
-        if normalized:
-            ax.set_yticklabels([])
-        ax.set_xticks(angles[:-1])
+    if normalized:
+        ax.set_yticklabels([])
+    ax.set_xticks(angles[:-1])
 
         # category_names = []
         # for category in categories:
@@ -521,14 +521,15 @@ def get_radar_plot(df, search_stage, categories, artefact, group, normalized=Tru
         #     else:
         #         category_names.append(category)
         # ax.set_xticklabels(category_names)
-        ax.set_xticklabels(categories)
+    ax.set_xticklabels(categories)
 
-        legend_map = {'$0$':'failed '+artefact, '$1$':'successsful '+artefact}
+    legend_map = {'$0$':'failed '+artefact, '$1$':'successsful '+artefact}
 
-        # handles, labels = ax.get_legend_handles_labels()
-        # print(labels)
-        # ax.legend(handles, [legend_map[l] for l in labels], loc='upper right', bbox_to_anchor=(1.5, 1.1))
-        # plt.savefig("Figures/"+search_stage+"_radar.pdf", dpi=300, bbox_inches='tight')
-        # plt.title(f"Scaled using {scaling}", y=1.05, fontsize=14)
+    # handles, labels = ax.get_legend_handles_labels()
+    # print(labels)
+    # ax.legend(handles, [legend_map[l] for l in labels], loc='upper right', bbox_to_anchor=(1.5, 1.1))
+    # plt.savefig("Figures/"+search_stage+"_radar.pdf", dpi=300, bbox_inches='tight')
+    # plt.title(f"Scaled using {scaling}", y=1.05, fontsize=14)
+    plt.savefig(f"Figures/{search_stage}_session_avg.pdf", dpi=300, bbox_inches="tight")
 
     plt.show()

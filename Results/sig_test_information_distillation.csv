@@ -1,7 +1,6 @@
 search_stage,characteristic,test_statistic,pval,significant
 information_distillation,page_dwell_time,-25.967000000000002,0.0042,True
-information_distillation,page_rank,0.0,1.0,False
-information_distillation,avg_content_length,3.0,0.5986,False
-information_distillation,avg_gulpease_index,-2.03631057465428,0.002,True
+information_distillation,avg_content_length,3.0,0.6216,False
+information_distillation,avg_gulpease_index,-2.03631057465428,0.0006,True
 information_distillation,avg_aoa,0.38244516030066045,0.0002,True
 information_distillation,avg_concreteness,-0.3418367346938753,0.0002,True

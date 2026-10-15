@@ -1,9 +1,10 @@
-Data/3rd/
-Data/4th/
-Data/original/
-Data/3rd.zip
-Data/4th.zip
-Data/log_cleaned_versions/
-Data/log_fixes.docx
+# Data/3rd/
+# Data/4th/
+# Data/original/
+# Data/3rd.zip
+# Data/4th.zip
+# Data/log_cleaned_versions/
+# Data/log_fixes.docx
 Resources/
 Resources.zip
+Data/

@@ -5,6 +5,6 @@ query_formulation,gulpease_index,-44.166666666666686,0.0024,True
 query_formulation,num_typos,0.0,1.0,False
 query_formulation,levenshtein_dist,0.0,1.0,False
 query_formulation,num_concepts,1.0,0.533,False
-query_formulation,mean_concepts_conc,-0.9250000000000007,0.0626,False
+query_formulation,query_concreteness,-0.9250000000000007,0.0626,False
 query_formulation,query_len,5.0,0.0018,True
 query_formulation,stop_word_ratio,0.5,0.0004,True
